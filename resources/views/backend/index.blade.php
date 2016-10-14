@@ -17,25 +17,20 @@
             <div class="span3">
                 <div class="sidebar">
                     <ul class="widget widget-menu unstyled">
-                        <li id="dashboard-menu"><a href="{{URL::to('admin/dashboard')}}"><i class="menu-icon icon-dashboard"></i>Dashboard
-                        </a></li>
+                        <li id="dashboard-menu"><a href="{{URL::to('admin/dashboard')}}"><i class="menu-icon icon-dashboard"></i>Dashboard</a></li>
 
-                        <li><a class="collapsed" data-toggle="collapse" href="#masterMenu"><i class="menu-icon icon-table">
-                        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                        </i>Master Data </a>
-                            <ul id="masterMenu" class="collapse unstyled">
-                                <li id="product-menu"><a href="#"><i class="menu-icon icon-book"></i>Products </a></li>
-                            </ul>
-                        </li>
+                        <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-book"></i>Product</a></li>
 
                         <li><a class="collapsed" data-toggle="collapse" href="#transactionMenu"><i class="menu-icon icon-shopping-cart">
                         </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                        </i>Transaction </a>
+                        </i>Transaction</a>
                             <ul id="transactionMenu" class="collapse unstyled">
-                                <li id="stock-menu"><a href="#"><i class="menu-icon icon-plus"></i>Stock</a></li>
-                                <li id="sell-menu"><a href="#"><i class="menu-icon icon-minus"></i>Sell </a></li>
+                                <li id="stock-menu"><a href="#"><i class="menu-icon icon-arrow-left"></i>Stock</a></li>
+                                <li id="sale-menu"><a href="#"><i class="menu-icon icon-arrow-right"></i>Sale </a></li>
                             </ul>
                         </li>
+
+                        <li id="setting-menu"><a href="{{URL::to('admin/setting')}}"><i class="menu-icon icon-cog"></i>Setting</a></li>
 
                         <li><a href="{{URL::to('admin/logout')}}"><i class="menu-icon icon-signout"></i>Logout </a></li>
                     </ul>

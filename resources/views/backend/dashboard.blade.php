@@ -20,7 +20,7 @@
                             </video>
                             </iframe>
                             <div class="alert alert-info">
-                                <center><strong>Welcome!</strong> Please use the navigation menu.</center>
+                                <center><strong>Welcome <font color="black">{{ucwords($admin->first_name)}} {{ucwords($admin->last_name)}}</font></strong>, Please use the navigation menu.</center>
                             </div>
                         </center>
                     </div>

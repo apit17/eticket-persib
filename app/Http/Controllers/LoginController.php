@@ -22,6 +22,19 @@ class LoginController extends Controller
     }
 
     /*
+     * Dashboard page
+     */
+    public function dashboard()
+    {
+        if (Sentry::check()) {
+            $admin = Sentry::getUser();
+            return View::make('backend.dashboard')->withAdmin($admin);
+        } else {
+            return Redirect::to('/');
+        }
+    }
+
+    /*
      * Login function
      */
     public function login(Request $request)
@@ -47,7 +60,8 @@ class LoginController extends Controller
 
                     // Authenticate the user
                     $user = Sentry::authenticate($credentials, false);
-                    return Redirect::to('/admin/dashboard');
+
+                    return Redirect::to('admin/dashboard')->with('flash_message', 'Welcome dear to Kissproof ID ♥♥♥');
                 } else {
                     session()->flash('flash_message_error', 'You Did Not Have Permissions to Logged in');
                     return Redirect::back();
@@ -99,7 +113,6 @@ class LoginController extends Controller
     {
         session()->flush();
         Sentry::logout();
-        session()->flash('flash_message', "You're Logged Out Now");
-        return Redirect::to('/');
+        return Redirect::to('/')->with('flash_message_error', 'You successfully logout dear ♥♥♥');
     }
 }

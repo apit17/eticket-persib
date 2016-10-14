@@ -19,22 +19,18 @@ Route::post('login', ['uses'=>'LoginController@login']);
  */
 Route::group(['prefix' => 'admin'], function() {
     Route::group(array('middleware'=>'hasAccess:admin'),function() {
-        Route::get('dashboard', 'AdminController@index');
-        Route::get('logout', 'LoginController@logout');
-        /* Department start here */
-        Route::get('department', 'AdminController@department_show');
-        Route::get('department/data', 'AdminController@department_data');
-        Route::post('department/detail', 'AdminController@department_detail');
-        Route::post('department/store', 'AdminController@department_store');
-        Route::post('department/update', 'AdminController@department_update');
-        Route::post('department/destroy', 'AdminController@department_destroy');
+        Route::get('dashboard', ['uses' => 'LoginController@dashboard']);
+        Route::get('logout', ['uses' => 'LoginController@logout']);
+
         /* Product start here */
-        Route::get('product', 'AdminController@product_show');
-        Route::get('product/data', 'AdminController@product_data');
-        Route::post('product/detail', 'AdminController@product_detail');
-        Route::post('product/store', 'AdminController@product_store');
-        Route::post('product/update', 'AdminController@product_update');
-        Route::post('product/destroy', 'AdminController@product_destroy');
+        Route::group(['prefix' => 'product'],function() {
+            Route::get('/',['uses' => 'ProductController@index']);
+            Route::get('/datatables',['uses' => 'ProductController@datatables']);
+            Route::post('/delete', ['uses' => 'ProductController@destroy']);
+            Route::post('/add', ['uses' => 'ProductController@store']);
+            Route::post('/edit', ['uses' => 'ProductController@edit']);
+            Route::post('/update', ['uses' => 'ProductController@update']);
+        });
     });
 });
 
