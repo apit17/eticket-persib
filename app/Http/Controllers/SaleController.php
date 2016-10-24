@@ -11,6 +11,7 @@ use App\Models\SaleDetail;
 use App\Models\Product;
 use App\Models\Customer;
 use View;
+use PDF;
 use Sentry;
 use Datatables;
 use Redirect;
@@ -43,17 +44,24 @@ class SaleController extends Controller
     {
         $results = $this->sale->getAllSales();
         return Datatables::of($results)
+            ->editColumn('date', function ($results) {
+                return date('d M Y',strtotime($results->date));
+            })
             ->editColumn('customer', function ($results) {
-                    return ucwords($results->customer);
+                return ucwords($results->customer);
             })
             ->editColumn('no_resi', function ($results) {
+                if (!empty($results->no_resi)) {
                     return strtoupper($results->no_resi);
+                } else {
+                    return '<a href="#" class="btn btn-small btn-success addresi" title="Input Resi Number"><i class="menu-icon icon-pencil"></i> </a>';
+                }
             })
             ->editColumn('total', function ($results) {
-                    return Kissproof::priceFormater($results->total);
+                return Kissproof::priceFormater($results->total);
             })
             ->addColumn('action', function ($results) {
-                return '<a href="admin/sale/detail?id='.$results->id.'" class="btn btn-small btn-info" title="View Detail Transaction"><i class="menu-icon icon-edit"></i> </a>';
+                return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalDetail" class="btn btn-small btn-info detail" title="View Detail Transaction"><i class="menu-icon icon-table"></i> </a> <a href="/admin/sale/print?id='.$results->id.'" class="btn btn-small btn-danger print" title="Print Invoice"><i class="menu-icon icon-file"></i> </a>';
             })
         ->make(true);
     }
@@ -97,20 +105,52 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $post = $request->all();
+        $getDetail = $this->sale->getDetailSale($post['id']);
+        $header = '<table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>';
+
+        $body = '';
+        foreach ($getDetail as $i => $val) {
+            $body .= '<tr><td>'.ucwords($val->name.' - '.$val->color).'</td><td>'.Kissproof::priceFormater($val->price).'</td><td>'.$val->qty.'</td></tr>';
+        }
+
+        $footer = '</table>';
+
+        $table = $header.$body.$footer;
+
+        $sent = (object) array(
+            'order' => $getDetail[0]->code,
+            'table' => $table
+        );
+
+        return json_encode($sent);
+        die();
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * print invoice order.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function print(Request $request)
     {
-        //
+        $id = $request->get('id');
+        $data = $this->sale->getDataInvoice($id);
+
+        // echo "<pre>";
+        // print_r($data); die();
+
+        $pdf = PDF::loadView('backend.sale.print', array("data" => $data))->setPaper('A4')->setOrientation('portrait');
+
+        return $pdf->download('Invoice#'.$data[0]->code.'.pdf');
     }
 
     /**

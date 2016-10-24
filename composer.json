@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "cartalyst/sentry": "dev-feature/laravel-5",
         "yajra/laravel-datatables-oracle": "~5.0",
-        "tymon/jwt-auth": "0.5.*"
+        "tymon/jwt-auth": "0.5.*",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

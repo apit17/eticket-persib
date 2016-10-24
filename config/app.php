@@ -150,6 +150,7 @@ return [
         Cartalyst\Sentry\SentryServiceProvider::class,
         yajra\Datatables\DatatablesServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +209,7 @@ return [
         'JWTAuth'    => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Datatables' => yajra\Datatables\Datatables::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

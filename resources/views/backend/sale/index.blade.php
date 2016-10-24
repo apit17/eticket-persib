@@ -18,14 +18,14 @@
                         <table class="table table-bordered" width="100%" id="sale-table">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th width="1%">No.</th>
                                     <th>Date</th>
-                                    <th>Order Code</th>
+                                    <th width="5%">Order Code</th>
                                     <th>Customer</th>
-                                    <th>Total Payment</th>
+                                    <th width="13%">Total Payment</th>
                                     <th>Shipping Address</th>
-                                    <th>Resi</th>
-                                    <th>Action</th>
+                                    <th width="18%">Resi Number</th>
+                                    <th width="13%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,7 +38,25 @@
         </div>
     </div>
 </div>
-
+<!-- Begin modal detail -->
+<div class="modal fade" id="myModalDetail" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><!-- Order title append here --></h4>
+        </div>
+        <div class="modal-body">
+            <!-- detail order append here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- End modal detail -->
 @stop
 
 @section('script')

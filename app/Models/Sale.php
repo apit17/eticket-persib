@@ -22,6 +22,20 @@ class Sale extends Model
     }
 
     /**
+     * [getDetailSale]
+     * @param  [type] $id [int]
+     * @return [type]     [array]
+     */
+    public function getDetailSale($id)
+    {
+        return $this->join('sale_details','sales.id','=','sale_details.sale_id')
+            ->join('products','sale_details.product_id','=','products.id')
+            ->select('sales.code','products.name','products.color','sale_details.price','sale_details.qty')
+            ->where('sale_details.sale_id',$id)
+            ->get();
+    }
+
+    /**
      * [insertNewSale]
      * @param  [type] $data [array]
      * @return [type]       [array]
@@ -85,5 +99,20 @@ class Sale extends Model
         }
 
         return $str;
+    }
+
+    /**
+     * [getDataInvoice]
+     * @param  [type] $id [int]
+     * @return [type]     [array]
+     */
+    public function getDataInvoice($id)
+    {
+        return $this->join('sale_details','sales.id','=','sale_details.sale_id')
+            ->join('products','sale_details.product_id','=','products.id')
+            ->join('customers','sales.customer_id','=','customers.id')
+            ->select('sales.code','sales.date','sales.total','sales.address','sender','products.name as product','products.color','sale_details.price','sale_details.qty','customers.name as customer','customers.phone','customers.email')
+            ->where('sale_details.sale_id',$id)
+            ->get();
     }
 }

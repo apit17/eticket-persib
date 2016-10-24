@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'yajra\\Datatables' => array($vendorDir . '/yajra/laravel-datatables-oracle/src'),
     'System' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Net' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Namshi\\JOSE' => array($vendorDir . '/namshi/jose/src'),

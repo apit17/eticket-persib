@@ -94,7 +94,7 @@
       </div>
     </div>
 </div>
-<!-- Begin modal delete -->
+<!-- End modal delete -->
 @stop
 
 @section('script')
