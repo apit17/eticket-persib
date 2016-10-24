@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
                 'name'       => 'kissproof seri 1',
                 'color'      => 'merah',
                 'price'      => 25000,
-                'stock'      => 0,
+                'stock'      => 10,
                 'created_at' => '2016-10-12 12:00:00',
                 'updated_at' => '2016-10-12 12:00:00'
             ];

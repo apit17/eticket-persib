@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kissproof ID</title>
+    <link rel="shortcut icon" type="image/png" href="{!! asset('asset/images/lips.png') !!}" />
     <link type="text/css" href="{!! asset('asset/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
     <link type="text/css" href="{!! asset('asset/bootstrap/css/bootstrap-responsive.min.css') !!}" rel="stylesheet">
     <link type="text/css" href="{!! asset('asset/css/theme.css') !!}" rel="stylesheet">
@@ -11,6 +12,8 @@
     <link type="text/css" href="{!! asset('asset/images/icons/css/font-awesome.css') !!}" rel="stylesheet">
     <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
     <link type="text/css" href="{!! asset('asset/css/dataTables.bootstrap.min.css') !!}" rel="stylesheet">
+    <link type="text/css" href="{!! asset('asset/css/jquery-ui.min.css') !!}" rel="stylesheet">
+    <link type="text/css" href="{!! asset('asset/css/select2.min.css') !!}" rel="stylesheet">
     @yield('style')
 </head>
 <body>
@@ -37,6 +40,7 @@
     <script src="{!! asset('asset/bootstrap/js/bootstrap.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('asset/scripts/jquery.dataTables.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('asset/scripts/pace.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('asset/scripts/select2.min.js') !!}" type="text/javascript"></script>
 @yield('script')
 
 </body>
@@ -44,6 +48,23 @@
 <script type="text/javascript">
 jQuery(document).ready(function() {
     jQuery('div.alert-flash').delay(3000).slideUp(300);
+    $(".priceFormat").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+             // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+    jQuery('.date-picker').datepicker({ dateFormat: 'dd-mm-yy'});
+    $(".select2").select2();
 });
 $(document).ajaxStart(function() {
     Pace.restart();

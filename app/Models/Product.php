@@ -29,7 +29,7 @@ class Product extends Model
         $this->price = $data['price'];
         $this->stock = $data['stock'];
 
-        if($this->save()) {
+        if ($this->save()) {
             return $this;
         } else {
             return false;
@@ -44,5 +44,16 @@ class Product extends Model
     public function getDetailProduct($id)
     {
         return $this->find($id);
+    }
+
+    /**
+     * [getDropdown]
+     * @return [type] [array]
+     */
+    public function getDropdown()
+    {
+        return static::select('id','name', 'color', 'stock')
+            ->where('stock','<>',0)
+            ->orderBy('name','ASC')->get();
     }
 }

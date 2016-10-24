@@ -9,7 +9,7 @@
     <div class="content">
         <div class="module">
             <div class="module-head">
-                <h3>Product's Management</h3>
+                <h3>Products Management</h3>
             </div>
             <div class="module-body">
                 <button type="button" class="btn btn-inverse add" data-toggle="modal" data-target="#myModalAdd" title="Create New"><i class="menu-icon icon-plus"></i>ADD</button><br/>
@@ -49,16 +49,16 @@
           <center>
             <input name="id" class="form-control" type="hidden" id="id">
             <div class="controls">
-                <input name="name" class="span10" id="name" placeholder="Enter Name">
+                <input name="name" class="span10" id="name" placeholder="Enter Name, ex: kissproof seri 1">
             </div>
             <div class="controls">
-                <input name="color" class="span10" id="color" placeholder="Enter Color" style="margin-top:20px">
+                <input name="color" class="span10" id="color" placeholder="Enter Color, ex: merah" style="margin-top:20px">
             </div>
             <div class="controls">
-                <input name="price" class="span10" id="price" placeholder="Enter Price" style="margin-top:20px">
+                <input name="price" class="span10 priceFormat" id="price" placeholder="Enter Price, ex: 25000" style="margin-top:20px">
             </div>
             <div class="controls">
-                <input type="number" min="0" name="stock" class="span10" id="stock" placeholder="Enter Quantity of Stock" style="margin-top:20px">
+                <input type="number" min="0" name="stock" class="span10" id="stock" placeholder="Enter Stock, Ex: 10" style="margin-top:20px">
             </div>
             </center>
             <br><div id="tips" style="margin-left:43px"></div>

@@ -19,6 +19,7 @@ class ProductController extends Controller
     {
         $this->model = $product;
     }
+
     /**
      * Display a listing of the resource.
      *

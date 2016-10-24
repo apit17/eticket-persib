@@ -31,6 +31,14 @@ Route::group(['prefix' => 'admin'], function() {
             Route::post('/edit', ['uses' => 'ProductController@edit']);
             Route::post('/update', ['uses' => 'ProductController@update']);
         });
+
+        /* Sale start here */
+        Route::group(['prefix' => 'sale'],function() {
+            Route::get('/',['uses' => 'SaleController@index']);
+            Route::get('/datatables',['uses' => 'SaleController@datatables']);
+            Route::get('/create',['uses' => 'SaleController@create']);
+            Route::post('/store',['uses' => 'SaleController@store']);
+        });
     });
 });
 

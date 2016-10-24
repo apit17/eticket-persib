@@ -1145,7 +1145,6 @@ text-decoration: none!important;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
-	 
 	margin: 10px 0 0;
 	width: 80%;
 	padding: 10px
@@ -1415,7 +1414,6 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 	float: right
 }
 .datatable-pagination>a {
-	
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
@@ -1424,7 +1422,6 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 	line-height: 20px;
 	height: 20px;
 	background-color: #f5f5f5;
-	
 	padding: 4px 12px;
 	text-align: center;
 	text-decoration: none!important;
@@ -1461,8 +1458,6 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe6e6e6', GradientType=0)
 }
 .datatable-pagination>a.paginate_disabled_previous, .datatable-pagination>a.paginate_disabled_next {
-		
-	
 	cursor: default
 }
 .datatable-pagination>a.paginate_disabled_previous i, .datatable-pagination>a.paginate_disabled_next i {
@@ -1692,3 +1687,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', end
 }
 
 .active-menu .menu-icon { color:#fff;}
+
+.label {
+	background-color: #fff !important;
+	color: #AC124C !important;
+	text-decoration: bold;
+}

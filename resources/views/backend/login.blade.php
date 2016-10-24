@@ -9,7 +9,7 @@
 			</a>
 
 		  	<a class="brand" href="">
-		  		<font size="6" color="#AC124C">Kissproof ID</font>
+		  		<img src="{!! asset('asset/images/lipstik.png') !!}" width="120" height="120"><font size="6" color="#AC124C"> Kissproof ID</font>
 		  	</a>
 		</div>
 	</div><!-- /navbar-inner -->
