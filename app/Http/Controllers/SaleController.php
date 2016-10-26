@@ -140,15 +140,13 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function print(Request $request)
+    public function printInvoice(Request $request)
     {
         $id = $request->get('id');
         $data = $this->sale->getDataInvoice($id);
+        $date = Kissproof::dateIndo($data[0]->date);
 
-        // echo "<pre>";
-        // print_r($data); die();
-
-        $pdf = PDF::loadView('backend.sale.print', array("data" => $data))->setPaper('A4')->setOrientation('portrait');
+        $pdf = PDF::loadView('backend.sale.print', array("data" => $data, "date" => $date))->setPaper('A4')->setOrientation('portrait');
 
         return $pdf->download('Invoice#'.$data[0]->code.'.pdf');
     }

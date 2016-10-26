@@ -17,7 +17,6 @@ class Sale extends Model
     {
         return $this->join('customers','sales.customer_id','=','customers.id')
             ->select('sales.*','customers.name as customer')
-            ->orderBy('sales.date','DESC')
             ->get();
     }
 
@@ -50,20 +49,18 @@ class Sale extends Model
             $product = Product::find($prod_id);
             $prices[] = $product->price;
         }
-        foreach ($prices as $m => $p) {
-            foreach ($qtyData as $n => $q) {
-                $tot[] = $p*$q;
-            }
+        foreach ($prices as $ii => $p) {
+            $tot = $p*$qtyData[$ii];
             $total[] = $tot;
         }
         $grandTotal = 0;
-        foreach ($total[0] as $ii => $val) {
+        foreach ($total as $iii => $val) {
             $grandTotal += $val;
         }
 
         //set sender
         if ($data['sender'] == 1) {
-            $sender = 'Kisproof.id';
+            $sender = 'Kissproof.id';
         } else {
             $sender = $data['sender_other'];
         }

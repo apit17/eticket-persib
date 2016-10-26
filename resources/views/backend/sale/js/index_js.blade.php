@@ -7,7 +7,7 @@ $(document).ready(function() {
     $('#sale-table').DataTable({
         processing: true,
         serverSide: true,
-        "order": [[ 1, "asc" ]],
+        "order": [[ 1, "desc" ]],
         ajax: "{{URL::to('/admin/sale/datatables')}}",
         "fnCreatedRow": function (row, data, index) {
             $('td', row).eq(0).html(index + 1);
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var obj = jQuery.parseJSON(data);
-                    $('#myModalDetail .modal-title').text('Detail Order #'+obj.order);
+                    $('#myModalDetail .modal-title').text('Detail Order ID#'+obj.order);
                     $('#myModalDetail .modal-body').html(obj.table);
                 }
             });
