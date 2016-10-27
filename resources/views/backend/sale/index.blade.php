@@ -20,7 +20,7 @@
                                 <tr>
                                     <th width="1%">No.</th>
                                     <th>Date</th>
-                                    <th width="5%">Order Code</th>
+                                    <th width="5%">Sale Code</th>
                                     <th>Customer</th>
                                     <th width="13%">Total Payment</th>
                                     <th>Shipping Address</th>

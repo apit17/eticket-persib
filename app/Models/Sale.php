@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use App\Classes\Kissproof;
 
 class Sale extends Model
 {
@@ -67,7 +68,7 @@ class Sale extends Model
         }
 
         $this->customer_id = $customer_id;
-        $this->code = $this->generateSaleCode();
+        $this->code = Kissproof::generateRandomCode();
         $this->date = date('Y-m-d',strtotime($data['date']));
         $this->total = $grandTotal;
         $this->address = $data['address'];
@@ -79,24 +80,6 @@ class Sale extends Model
         } else {
             return false;
         }
-    }
-
-    /**
-     * [generateSaleCode]
-     * @param  integer $length [int]
-     * @return [type]          [string]
-     */
-    public function generateSaleCode($length=6)
-    {
-        $str = "";
-        $characters = array_merge(range('A','Z'), range('a','z'), range('1','9'));
-        $max = count($characters) - 1;
-        for ($i = 0; $i < $length; $i++) {
-            $rand = mt_rand(0, $max);
-            $str .= $characters[$rand];
-        }
-
-        return $str;
     }
 
     /**

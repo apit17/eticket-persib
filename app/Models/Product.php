@@ -47,13 +47,23 @@ class Product extends Model
     }
 
     /**
-     * [getDropdown]
+     * [getDropdown Sale]
      * @return [type] [array]
      */
-    public function getDropdown()
+    public function getDropdownSale()
     {
         return static::select('id','name', 'color', 'stock')
             ->where('stock','<>',0)
+            ->orderBy('name','ASC')->get();
+    }
+
+    /**
+     * [getDropdown Procurement]
+     * @return [type] [array]
+     */
+    public function getDropdownProcurement()
+    {
+        return static::select('id','name', 'color', 'stock')
             ->orderBy('name','ASC')->get();
     }
 }

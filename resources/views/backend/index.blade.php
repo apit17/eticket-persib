@@ -21,13 +21,13 @@
 
                         <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-book"></i>Products</a></li>
 
-                        <li id="customer-menu"><a href="#"><i class="menu-icon icon-user"></i>Customers</a></li>
+                        <li id="customer-menu"><a href="{{URL::to('admin/customer')}}"><i class="menu-icon icon-user"></i>Customers</a></li>
 
                         <li><a class="collapsed" data-toggle="collapse" href="#transactionMenu"><i class="menu-icon icon-shopping-cart">
                         </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                         </i>Transactions</a>
                             <ul id="transactionMenu" class="collapse unstyled">
-                                <li id="procurement-menu"><a href="#"><i class="menu-icon icon-arrow-left"></i>Procurements</a></li>
+                                <li id="procurement-menu"><a href="{{URL::to('admin/procurement')}}"><i class="menu-icon icon-arrow-left"></i>Procurements</a></li>
                                 <li id="sale-menu"><a href="{{URL::to('admin/sale')}}"><i class="menu-icon icon-arrow-right"></i>Sales </a></li>
                             </ul>
                         </li>

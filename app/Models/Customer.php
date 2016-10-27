@@ -31,4 +31,13 @@ class Customer extends Model
             }
         }
     }
+
+    /**
+     * [get all data from customers table]
+     * @return [type] [array]
+     */
+    public function getAllCustomers()
+    {
+        return $this->all();
+    }
 }

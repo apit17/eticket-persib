@@ -74,7 +74,7 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $product = $this->product->getDropdown();
+        $product = $this->product->getDropdownSale();
         return View::make('backend.sale.create')->withProduct($product);
     }
 

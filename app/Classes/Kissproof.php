@@ -32,6 +32,24 @@ class Kissproof {
         return($result);
     }
 
+    /**
+     * [Generate Random Code]
+     * @param  integer $length [int]
+     * @return [type]          [string]
+     */
+    public static function generateRandomCode($length=6)
+    {
+        $str = "";
+        $characters = array_merge(range('A','Z'), range('a','z'), range('1','9'));
+        $max = count($characters) - 1;
+        for ($i = 0; $i < $length; $i++) {
+            $rand = mt_rand(0, $max);
+            $str .= $characters[$rand];
+        }
+
+        return $str;
+    }
+
 }
 
 ?>

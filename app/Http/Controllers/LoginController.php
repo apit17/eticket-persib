@@ -35,6 +35,34 @@ class LoginController extends Controller
     }
 
     /*
+     * Setting Admin Page
+     */
+    public function setting()
+    {
+        $admin = Sentry::getUser();
+        return View::make('backend.setting')->withAdmin($admin);
+    }
+
+    /*
+     * Update Admin Account
+     */
+    public function updateAdmin(Request $request)
+    {
+        $post = $request->all();
+        $admin = Sentry::getUser();
+        $admin->first_name = $post['first_name'];
+        $admin->last_name = $post['last_name'];
+
+        if ($admin->save()) {
+            session()->flash('flash_message', 'Account has been updated');
+            return Redirect::back();
+        } else {
+            session()->flash('flash_message_error', 'Failed to update account');
+            return Redirect::back();
+        }
+    }
+
+    /*
      * Login function
      */
     public function login(Request $request)
