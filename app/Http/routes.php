@@ -40,6 +40,7 @@ Route::group(['prefix' => 'admin'], function() {
             Route::post('/store',['uses' => 'SaleController@store']);
             Route::post('/detail',['uses' => 'SaleController@show']);
             Route::get('/print',['uses' => 'SaleController@printInvoice']);
+            Route::post('/resi',['uses' => 'SaleController@addResiNumber']);
         });
     });
 });

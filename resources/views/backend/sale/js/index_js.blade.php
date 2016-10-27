@@ -27,18 +27,24 @@ $(document).ready(function() {
     //detail
     $(document).on('click','.detail',function() {
         var id = $(this).data('id');
-            $.ajax({
-                'type':'post',
-                'url':"{{URL::to('/admin/sale/detail')}}",
-                'data':{
-                    'id': id,
-                },
-                success: function(data) {
-                    var obj = jQuery.parseJSON(data);
-                    $('#myModalDetail .modal-title').text('Detail Order ID#'+obj.order);
-                    $('#myModalDetail .modal-body').html(obj.table);
-                }
-            });
+        $.ajax({
+            'type':'post',
+            'url':"{{URL::to('/admin/sale/detail')}}",
+            'data':{
+                'id': id,
+            },
+            success: function(data) {
+                var obj = jQuery.parseJSON(data);
+                $('#myModalDetail .modal-title').text('Detail Order ID#'+obj.order);
+                $('#myModalDetail .modal-body').html(obj.table);
+            }
+        });
+    });
+
+    //add resi number
+    $(document).on('click','.addResi',function() {
+        var id = $(this).data('id');
+        $('#saleID').val(id);
     });
 });
 </script>

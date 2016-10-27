@@ -29,7 +29,8 @@ class Sale extends Model
     {
         return $this->join('sale_details','sales.id','=','sale_details.sale_id')
             ->join('products','sale_details.product_id','=','products.id')
-            ->select('sales.code','products.name','products.color','sale_details.price','sale_details.qty')
+            ->join('customers','sales.customer_id','=','customers.id')
+            ->select('sales.code','products.name','products.color','sale_details.price','sale_details.qty','customers.email')
             ->where('sale_details.sale_id',$id)
             ->get();
     }

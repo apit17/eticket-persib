@@ -15,6 +15,7 @@ use PDF;
 use Sentry;
 use Datatables;
 use Redirect;
+use Mail;
 
 class SaleController extends Controller
 {
@@ -54,7 +55,7 @@ class SaleController extends Controller
                 if (!empty($results->no_resi)) {
                     return strtoupper($results->no_resi);
                 } else {
-                    return '<a href="#" class="btn btn-small btn-success addresi" title="Input Resi Number"><i class="menu-icon icon-pencil"></i> </a>';
+                    return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalResi" class="btn btn-small btn-primary addResi" title="Input Resi Number"><i class="menu-icon icon-pencil"></i> </a>';
                 }
             })
             ->editColumn('total', function ($results) {
@@ -137,7 +138,7 @@ class SaleController extends Controller
     /**
      * print invoice order.
      *
-     * @param  int  $id
+     * @param  array  $request
      * @return \Illuminate\Http\Response
      */
     public function printInvoice(Request $request)
@@ -149,6 +150,37 @@ class SaleController extends Controller
         $pdf = PDF::loadView('backend.sale.print', array("data" => $data, "date" => $date))->setPaper('A4')->setOrientation('portrait');
 
         return $pdf->download('Invoice#'.$data[0]->code.'.pdf');
+    }
+
+    /**
+     * update resi number in sale's data.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addResiNumber(Request $request)
+    {
+        $post = $request->all();
+        $sale = $this->sale->find($post['saleID']);
+        $sale->no_resi = $post['no_resi'];
+        $sale->save();
+
+        if (!empty($post['is_send_email'])) {
+            $customer = $this->customer->find($sale->customer_id);
+            $insert = array (
+                'email' => $customer->email,
+                'name'  => $customer->name,
+                'resi'  => strtoupper($sale->no_resi)
+            );
+            Mail::send('email.sendResiNumber', $insert, function ($message) use ($insert) {
+                $message->subject("Kissproof.id - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");
+                $message->from('kissproof.semarang@gmail.com');
+                $message->to($insert['email']);
+            });
+        }
+
+        session()->flash('flash_message','Resi Number has been registered');
+        return Redirect::to('admin/sale');
     }
 
     /**

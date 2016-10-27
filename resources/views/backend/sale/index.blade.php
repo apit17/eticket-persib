@@ -57,6 +57,31 @@
     </div>
 </div>
 <!-- End modal detail -->
+
+<!-- Begin modal add resi number -->
+<div class="modal fade" id="myModalResi" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Resi Number</h4>
+        </div>
+        <form method="POST" action="{{URL::to('/admin/sale/resi')}}" accept-charset="UTF-8" id="add-resi" name="add-resi">
+        <div class="modal-body">
+            <input name="saleID" class="form-control" type="hidden" id="saleID">
+            <input name="no_resi" class="form-control span4" type="text" id="no_resi" placeholder="Enter Resi Number" required><br/><br/>
+            <input type="checkbox" name="is_send_email"> <span><b>Send Email to Customer.</b>   </span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!-- End modal add resi number -->
 @stop
 
 @section('script')
