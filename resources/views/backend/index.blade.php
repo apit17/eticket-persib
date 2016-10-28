@@ -32,7 +32,7 @@
                             </ul>
                         </li>
 
-                        <li id="statistic-menu"><a href="#"><i class="menu-icon icon-bar-chart"></i>Statistics</a></li>
+                        <li id="statistic-menu"><a href="{{URL::to('admin/statistic')}}"><i class="menu-icon icon-bar-chart"></i>Statistics</a></li>
 
                         <li id="setting-menu"><a href="{{URL::to('admin/setting')}}"><i class="menu-icon icon-cog"></i>Settings</a></li>
 

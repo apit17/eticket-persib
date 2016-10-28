@@ -59,6 +59,11 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/',['uses' => 'CustomerController@index']);
             Route::get('/datatables',['uses' => 'CustomerController@datatables']);
         });
+
+        /* Statistic start here */
+        Route::group(['prefix' => 'statistic'],function() {
+            Route::get('/',['uses' => 'StatisticController@index']);
+        });
     });
 });
 

@@ -41,6 +41,10 @@
     <script src="{!! asset('asset/scripts/jquery.dataTables.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('asset/scripts/pace.min.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('asset/scripts/select2.min.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('asset/scripts/flot/jquery.flot.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('asset/scripts/flot/jquery.flot.pie.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('asset/scripts/flot/jquery.flot.resize.js') !!}" type="text/javascript"></script>
+    <!-- <script src="{!! asset('asset/scripts/common.js') !!}" type="text/javascript"></script> -->
 @yield('script')
 
 </body>
