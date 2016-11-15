@@ -69,6 +69,15 @@
         <td>&nbsp;</td>
     </tr>
     <tr>
+    <td align="center">
+        <ul style="list-style: none;padding-left: 0;margin-bottom: 0;">
+            <li>
+                <a href="https://www.instagram.com/kissproof.id/"><img src="https://d13yacurqjgara.cloudfront.net/users/334914/screenshots/2707164/dribbble_instagram_icon_app_1x.jpg" width="200" height="150" /></a>
+            </li>
+        </ul>
+    </td>
+    </tr>
+    <tr>
         <td>&nbsp;</td>
     </tr>
     </tbody>
@@ -95,7 +104,6 @@
     </p>
     </td>
     </tr>
-
     </tbody>
     </table>
     </td>
