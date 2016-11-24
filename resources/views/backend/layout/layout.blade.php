@@ -45,6 +45,7 @@
     <script src="{!! asset('asset/scripts/flot/jquery.flot.pie.js') !!}" type="text/javascript"></script>
     <script src="{!! asset('asset/scripts/flot/jquery.flot.resize.js') !!}" type="text/javascript"></script>
     <!-- <script src="{!! asset('asset/scripts/common.js') !!}" type="text/javascript"></script> -->
+    <script src="{!! asset('asset/scripts/highcharts.js') !!}" type="text/javascript"></script>
 @yield('script')
 
 </body>

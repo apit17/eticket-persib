@@ -10,12 +10,32 @@
         <div class="content">
             <div class="module">
                 <div class="module-head">
-                    <h3>
-                        Statistic - Income</h3>
+                    <div>
+                        <h3>Search Periode :</h3>
+                    </div>
+                </div>
+                <div class="module-body">
+                    <div class="form-inline" style="text-align: center">
+                        <div class="form-group">
+                            <input type="text" name="first_date" id="first_date" class="date-picker form-control" placeholder="From">
+                            <b>to</b>
+                            <input type="text" name="end_date" id="end_date" class="date-picker form-control" placeholder="Until">
+                            <button type="button" id="filter_button" class="btn btn-primary">Search <i class="icon-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="module">
+                <div class="module-head">
+                    <div>
+                        <h3>Statistic - Income</h3>
+                    </div>
                 </div>
                 <div class="module-body">
                     <div class="chart">
-                        <div id="placeholder" class="graph">
+                        <div id="income" class="graph">
+                            <center>No data.</center>
                         </div>
                     </div>
                 </div>
@@ -29,7 +49,8 @@
                 </div>
                 <div class="module-body">
                     <div class="chart inline-legend grid">
-                        <div id="placeholder2" class="graph">
+                        <div id="outcome" class="graph">
+                            <center>No data.</center>
                         </div>
                     </div>
                 </div>

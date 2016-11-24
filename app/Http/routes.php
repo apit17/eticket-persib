@@ -63,6 +63,8 @@ Route::group(['prefix' => 'admin'], function() {
         /* Statistic start here */
         Route::group(['prefix' => 'statistic'],function() {
             Route::get('/',['uses' => 'StatisticController@index']);
+            Route::post('/income',['uses' => 'StatisticController@income']);
+            Route::post('/outcome',['uses' => 'StatisticController@outcome']);
         });
     });
 });

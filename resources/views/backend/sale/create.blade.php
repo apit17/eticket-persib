@@ -55,7 +55,7 @@
                         <div class="control-group">
                             <label class="control-label label" for="address">Shipping Address</label>
                             <div class="controls">
-                                <textarea name="address" id="address" class="span8" rows="5" placeholder="Enter Address" required></textarea>
+                                <textarea name="address" id="address" class="span8" rows="5" placeholder="Ex : Jalan Raya Bojongsoang No.169, Kec. Bojongsoang, Kab. Bandung, Bandung 40288." required></textarea>
                             </div>
                             <br/>
                             <label class="control-label label" for="sender">Sender</label>
@@ -88,9 +88,9 @@
                                 <input name="email" type="email" id="email"  placeholder="Enter Email" class="span8" required>
                             </div>
                             <br/>
-                            <label class="control-label label" for="city">City</label>
+                            <label class="control-label label" for="city">Hometown</label>
                             <div class="controls">
-                                <input name="city" type="text" id="city"  placeholder="Enter City" class="span8" required>
+                                <input name="city" type="text" id="city"  placeholder="Enter Hometown (Kota Asal)" class="span8" required>
                             </div>
                         </div>
                         <!-- Button Actions -->

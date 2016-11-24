@@ -96,4 +96,19 @@ class Sale extends Model
             ->where('sale_details.sale_id',$id)
             ->get();
     }
+
+    /**
+     * [getSaleDateByPeriode]
+     * @param  [type] $start [date]
+     * @param  [type] $end   [date]
+     * @return [type]        [array]
+     */
+    public function getSaleDataByPeriode($start, $end)
+    {
+        return \DB::table('sales')
+            ->selectRaw('date, sum(total) as amount')
+            ->whereBetween('date', array($start.' 00:00:00', $end.' 23:59:59'))
+            ->groupBy('date')
+            ->lists('amount', 'date');
+    }
 }

@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Classes\Kissproof;
+use App\Models\Sale;
+use App\Models\Procurement;
 use View;
-use PDF;
 use Sentry;
-use Datatables;
 use Redirect;
-use Mail;
 
 class StatisticController extends Controller
 {
+    public function __construct(Sale $sale, Procurement $proc)
+    {
+        $this->income = $sale;
+        $this->outcome = $proc;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,68 +31,61 @@ class StatisticController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Get data income from db.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function income(Request $request)
     {
-        //
+        $post = $request->all();
+        $start = date('Y-m-d',strtotime($post['first_date']));
+        $end = date('Y-m-d',strtotime($post['end_date']));
+
+        $income = $this->income->getSaleDataByPeriode($start, $end);
+
+        $date = array(); $total = array();
+        foreach ($income as $key => $value) {
+            $date[] = Kissproof::dateIndo($key);
+            $total[] = $value;
+        }
+
+        $sent = array(
+            'date' => $date,
+            'total' => $total
+        );
+
+        return json_encode($sent);
+        die();
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Get data outcome from db.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function outcome(Request $request)
     {
-        //
+        $post = $request->all();
+        $start = date('Y-m-d',strtotime($post['first_date']));
+        $end = date('Y-m-d',strtotime($post['end_date']));
+
+        $outcome = $this->outcome->getProcurementDataByPeriode($start, $end);
+
+        $date = array(); $total = array();
+        foreach ($outcome as $key => $value) {
+            $date[] = Kissproof::dateIndo($key);
+            $total[] = $value;
+        }
+
+        $sent = array(
+            'date' => $date,
+            'total' => $total
+        );
+
+        return json_encode($sent);
+        die();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

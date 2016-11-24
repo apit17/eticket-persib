@@ -15,7 +15,7 @@
                 <div class="chart inline-legend grid">
                     <div id="placeholder2" class="graph" style="height: 400px">
                         <center>
-                            <video poster="{!! asset('multimedia/our.gif') !!}" width="100%" height="365" controls autoplay loop>
+                            <video poster="{!! asset('multimedia/headphone.gif') !!}" width="100%" height="365" controls autoplay loop>
                               <source src="{!! asset('multimedia/song.mp3') !!}" type="video/ogg">
                             </video>
                             </iframe>
