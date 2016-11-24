@@ -11,12 +11,16 @@
             <div class="module">
                 <div class="module-head">
                     <div>
-                        <h3>Search Periode :</h3>
+                        <h3>Search Option :</h3>
                     </div>
                 </div>
                 <div class="module-body">
                     <div class="form-inline" style="text-align: center">
                         <div class="form-group">
+                            <select id="type">
+                                <option value="table">Table</option>
+                                <option value="graphic">Graphic</option>
+                            </select>
                             <input type="text" name="first_date" id="first_date" class="date-picker form-control" placeholder="From">
                             <b>to</b>
                             <input type="text" name="end_date" id="end_date" class="date-picker form-control" placeholder="Until">
@@ -35,7 +39,7 @@
                 <div class="module-body">
                     <div class="chart">
                         <div id="income" class="graph">
-                            <center>No data.</center>
+                            <center><span>No data.</span></center>
                         </div>
                     </div>
                 </div>
@@ -50,7 +54,7 @@
                 <div class="module-body">
                     <div class="chart inline-legend grid">
                         <div id="outcome" class="graph">
-                            <center>No data.</center>
+                            <center><span>No data.</span></center>
                         </div>
                     </div>
                 </div>

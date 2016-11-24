@@ -42,31 +42,37 @@ function loadGraphicIncome()
             type:'post',
             url:"{{URL::to('admin/statistic/income')}}",
             data:{
+                'type' : $("#type").val(),
                 'first_date': $("#first_date").val(),
                 'end_date'  : $("#end_date").val()
             },
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
-                var myChart = Highcharts.chart('income', {
-                    chart: {
-                        type: 'line'
-                    },
-                    title: {
-                        text: 'Kissproof Income'
-                    },
-                    xAxis: {
-                        categories: obj.date
-                    },
-                    yAxis: {
+                if (obj.type == 'graphic') {
+                    var myChart = Highcharts.chart('income', {
+                        chart: {
+                            type: 'line'
+                        },
                         title: {
-                            text: 'Nominal'
-                        }
-                    },
-                    series: [{
-                        name: 'Income',
-                        data: obj.total
-                    }]
-                });
+                            text: 'Kissproof Income'
+                        },
+                        xAxis: {
+                            categories: obj.date
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Nominal'
+                            }
+                        },
+                        series: [{
+                            name: 'Income',
+                            data: obj.total
+                        }]
+                    });
+                } else {
+                    $('#income').html('');
+                    $('#income').html(obj.table);
+                }
             }
         });
     });
@@ -79,31 +85,37 @@ function loadGraphicOutcome()
             type:'post',
             url:"{{URL::to('admin/statistic/outcome')}}",
             data:{
+                'type' : $("#type").val(),
                 'first_date': $("#first_date").val(),
                 'end_date'  : $("#end_date").val()
             },
             success: function(data) {
                 var obj = jQuery.parseJSON(data);
-                var myChart = Highcharts.chart('outcome', {
-                    chart: {
-                        type: 'line'
-                    },
-                    title: {
-                        text: 'Kissproof Outcome'
-                    },
-                    xAxis: {
-                        categories: obj.date
-                    },
-                    yAxis: {
+                if (obj.type == 'graphic') {
+                    var myChart = Highcharts.chart('outcome', {
+                        chart: {
+                            type: 'line'
+                        },
                         title: {
-                            text: 'Nominal'
-                        }
-                    },
-                    series: [{
-                        name: 'Outcome',
-                        data: obj.total
-                    }]
-                });
+                            text: 'Kissproof Outcome'
+                        },
+                        xAxis: {
+                            categories: obj.date
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Nominal'
+                            }
+                        },
+                        series: [{
+                            name: 'Outcome',
+                            data: obj.total
+                        }]
+                    });
+                } else {
+                    $('#outcome').html('');
+                    $('#outcome').html(obj.table);
+                }
             }
         });
     });

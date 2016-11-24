@@ -44,16 +44,43 @@ class StatisticController extends Controller
 
         $income = $this->income->getSaleDataByPeriode($start, $end);
 
-        $date = array(); $total = array();
-        foreach ($income as $key => $value) {
-            $date[] = Kissproof::dateIndo($key);
-            $total[] = $value;
-        }
+        if ($post['type'] == 'graphic') {
 
-        $sent = array(
-            'date' => $date,
-            'total' => $total
-        );
+            $date = array(); $total = array();
+            foreach ($income as $key => $value) {
+                $date[] = Kissproof::dateIndo($key);
+                $total[] = $value;
+            }
+
+            $sent = array(
+                'type' => 'graphic',
+                'date' => $date,
+                'total' => $total
+            );
+
+        } else {
+
+            $header = '<table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th>Date</th>
+                <th>Total</th>
+            </tr>';
+
+            $body = ''; $sum = 0;
+            foreach ($income as $i => $val) {
+                $body .= '<tr><td>'.Kissproof::dateIndo($i).'</td><td>'.Kissproof::priceFormater($val).'</td></tr>';
+                $sum += $val;
+            }
+
+            $footer = '<tr><td><b>Total Income</b></td><td><b>'.Kissproof::priceFormater($sum).'</b></td></tr></table>';
+
+            $table = $header.$body.$footer;
+
+            $sent = array(
+                'type' => 'table',
+                'table' => $table
+            );
+        }
 
         return json_encode($sent);
         die();
@@ -73,16 +100,44 @@ class StatisticController extends Controller
 
         $outcome = $this->outcome->getProcurementDataByPeriode($start, $end);
 
-        $date = array(); $total = array();
-        foreach ($outcome as $key => $value) {
-            $date[] = Kissproof::dateIndo($key);
-            $total[] = $value;
-        }
+        if ($post['type'] == 'graphic') {
 
-        $sent = array(
-            'date' => $date,
-            'total' => $total
-        );
+            $date = array(); $total = array();
+            foreach ($outcome as $key => $value) {
+                $date[] = Kissproof::dateIndo($key);
+                $total[] = $value;
+            }
+
+            $sent = array(
+                'type' => 'graphic',
+                'date' => $date,
+                'total' => $total
+            );
+
+        } else {
+
+            $header = '<table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th>Date</th>
+                <th>Total</th>
+            </tr>';
+
+            $body = ''; $sum = 0;
+            foreach ($outcome as $i => $val) {
+                $body .= '<tr><td>'.Kissproof::dateIndo($i).'</td><td>'.Kissproof::priceFormater($val).'</td></tr>';
+                $sum += $val;
+            }
+
+            $footer = '<tr><td><b>Total Outcome</b></td><td><b>'.Kissproof::priceFormater($sum).'</b></td></tr></table>';
+
+            $table = $header.$body.$footer;
+
+            $sent = array(
+                'type' => 'table',
+                'table' => $table
+            );
+
+        }
 
         return json_encode($sent);
         die();
