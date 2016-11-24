@@ -56,7 +56,7 @@
                                         var ampm = jam >= 12 ? 'PM' : 'AM';
                                         jam = jam % 12;
                                         jam = jam ? jam : 12; // the hour '0' should be '12'
-                                        menit = menit < 10 ? '0'+menit : menit;
+                                        menit = menit < 10 ? +menit : menit;
 
                                         if (jam < 10) {
                                         jam = "0" + jam;

@@ -1,5 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
+    loadGraphicIncome();
+    loadGraphicOutcome();
     $('#statistic-menu a').addClass('active-menu');
     $("#first_date").datepicker( { maxDate: 0 });
     $("#end_date").datepicker( { maxDate: 0 });

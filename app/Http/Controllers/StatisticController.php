@@ -39,8 +39,8 @@ class StatisticController extends Controller
     public function income(Request $request)
     {
         $post = $request->all();
-        $start = date('Y-m-d',strtotime($post['first_date']));
-        $end = date('Y-m-d',strtotime($post['end_date']));
+        $start = @$post['first_date'] ? date('Y-m-d',strtotime($post['first_date'])) : "";
+        $end = @$post['end_date'] ? date('Y-m-d',strtotime($post['end_date'])) : "";
 
         $income = $this->income->getSaleDataByPeriode($start, $end);
 
@@ -95,8 +95,8 @@ class StatisticController extends Controller
     public function outcome(Request $request)
     {
         $post = $request->all();
-        $start = date('Y-m-d',strtotime($post['first_date']));
-        $end = date('Y-m-d',strtotime($post['end_date']));
+        $start = @$post['first_date'] ? date('Y-m-d',strtotime($post['first_date'])) : "";
+        $end = @$post['end_date'] ? date('Y-m-d',strtotime($post['end_date'])) : "";
 
         $outcome = $this->outcome->getProcurementDataByPeriode($start, $end);
 

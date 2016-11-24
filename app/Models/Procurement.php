@@ -70,10 +70,18 @@ class Procurement extends Model
      */
     public function getProcurementDataByPeriode($start, $end)
     {
-        return \DB::table('procurements')
-            ->selectRaw('date, sum(total) as amount')
-            ->whereBetween('date', array($start.' 00:00:00', $end.' 23:59:59'))
-            ->groupBy('date')
-            ->lists('amount', 'date');
+        if (!empty($start) && !empty($end)) {
+            return \DB::table('procurements')
+                ->selectRaw('date, sum(total) as amount')
+                ->whereBetween('date', array($start.' 00:00:00', $end.' 23:59:59'))
+                ->groupBy('date')
+                ->lists('amount', 'date');
+        } else {
+            return \DB::table('procurements')
+                ->selectRaw('date, sum(total) as amount')
+                ->whereMonth('date','=',date('m'))
+                ->groupBy('date')
+                ->lists('amount', 'date');
+        }
     }
 }
