@@ -17,7 +17,9 @@
             <div class="span3">
                 <div class="sidebar">
                     <ul class="widget widget-menu unstyled">
-                        <li id="dashboard-menu"><a href="{{URL::to('admin/dashboard')}}"><i class="menu-icon icon-dashboard"></i>Dashboard</a></li>
+                        <!-- <li id="dashboard-menu"><a href="{{URL::to('admin/dashboard')}}"><i class="menu-icon icon-dashboard"></i>Dashboard</a></li> -->
+
+                        <li id="statistic-menu"><a href="{{URL::to('admin/statistic')}}"><i class="menu-icon icon-dashboard"></i>Dashboard</a></li>
 
                         <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-book"></i>Products</a></li>
 
@@ -32,13 +34,49 @@
                             </ul>
                         </li>
 
-                        <li id="statistic-menu"><a href="{{URL::to('admin/statistic')}}"><i class="menu-icon icon-bar-chart"></i>Statistics</a></li>
-
                         <li id="setting-menu"><a href="{{URL::to('admin/setting')}}"><i class="menu-icon icon-cog"></i>Settings</a></li>
 
                         <li><a href="{{URL::to('admin/logout')}}"><i class="menu-icon icon-signout"></i>Logout </a></li>
                     </ul>
                 </div>
+                @if(Sentry::check())
+                    <div class="btn-box-row row-fluid">
+                        <a href="#" class="btn-box big span12">
+                            <span>Login as,</span><br/><br/>
+                            <i class="icon-user"></i>
+                            <b>{{ucwords(Sentry::getUser()->first_name.' '.Sentry::getUser()->last_name)}}</b><br/>
+                            <div id="jam">
+                                <script language="javascript">
+                                    function jam() {
+                                        var waktu = new Date();
+                                        var jam = waktu.getHours();
+                                        var menit = waktu.getMinutes();
+                                        var detik = waktu.getSeconds();
+
+                                        var ampm = jam >= 12 ? 'PM' : 'AM';
+                                        jam = jam % 12;
+                                        jam = jam ? jam : 12; // the hour '0' should be '12'
+                                        menit = menit < 10 ? '0'+menit : menit;
+
+                                        if (jam < 10) {
+                                        jam = "0" + jam;
+                                        }
+                                        if (menit < 10) {
+                                        menit = "0" + menit;
+                                        }
+                                        if (detik < 10) {
+                                        detik = "0" + detik;
+                                        }
+                                        var jam_div = document.getElementById('jam');
+                                        jam_div.innerHTML = jam + ":" + menit + ":" + detik + ' ' + ampm;
+                                        setTimeout("jam()", 1000);
+                                    }
+                                    jam();
+                                </script>
+                            </div>
+                        </a>
+                    </div>
+                @endif
                 <!--/.sidebar-->
             </div>
             <!--/.span3-->

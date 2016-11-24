@@ -89,7 +89,7 @@ class LoginController extends Controller
                     // Authenticate the user
                     $user = Sentry::authenticate($credentials, false);
 
-                    return Redirect::to('admin/dashboard')->with('flash_message', 'Welcome dear to Kissproof ID ♥♥♥');
+                    return Redirect::to('admin/statistic')->with('flash_message', 'Welcome '.ucwords($admin->first_name.' '.$admin->last_name).' to Kissproof ID ♥♥♥');
                 } else {
                     session()->flash('flash_message_error', 'You Did Not Have Permissions to Logged in');
                     return Redirect::back();
