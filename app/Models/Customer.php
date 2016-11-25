@@ -17,7 +17,15 @@ class Customer extends Model
         $check = $this->where('email','=',$data['email'])->first();
 
         if (count($check) > 0) {
-            return $check->id;
+            $check->name = $data['name'];
+            $check->phone = $data['phone'];
+            $check->city = $data['city'];
+
+            if ($check->save()) {
+                return $check->id;
+            } else {
+                return false;
+            }
         } else {
             $this->name = $data['name'];
             $this->phone = $data['phone'];
