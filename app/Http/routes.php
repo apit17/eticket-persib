@@ -60,6 +60,14 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/datatables',['uses' => 'CustomerController@datatables']);
         });
 
+        /* Promotion start here */
+        Route::group(['prefix' => 'promotion'],function() {
+            Route::get('/',['uses' => 'PromotionController@index']);
+            Route::get('/datatables',['uses' => 'PromotionController@datatables']);
+            Route::post('/add', ['uses' => 'PromotionController@store']);
+            Route::post('/delete', ['uses' => 'PromotionController@destroy']);
+        });
+
         /* Statistic start here */
         Route::group(['prefix' => 'statistic'],function() {
             Route::get('/',['uses' => 'StatisticController@index']);
