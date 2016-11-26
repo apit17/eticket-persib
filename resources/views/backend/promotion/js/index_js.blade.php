@@ -20,6 +20,11 @@ $(document).ready(function() {
         ]
     });
 
+    //add
+    $(document).on('click','.add',function() {
+        document.getElementById("create-promotion").reset();
+    });
+
     //delete
     $(document).on('click','.delete',function(){
         var id = $(this).data('id');
