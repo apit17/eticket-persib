@@ -88,8 +88,8 @@ class PromotionController extends Controller
         }
 
         if (!empty($promotion['id'])) {
-            $job = (new SendPromotionJob($email))->delay(1); //make queue delayed 1sec.
-            $this->dispatch($job);
+
+            dispatch(new SendPromotionJob($email));
 
             session()->flash('flash_message','Promotion has been sent');
             return Redirect::back();

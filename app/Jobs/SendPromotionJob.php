@@ -11,7 +11,9 @@ use Mail;
 class SendPromotionJob extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
-    protected $message = [];
+
+    protected $message = array();
+
     /**
      * Create a new job instance.
      *

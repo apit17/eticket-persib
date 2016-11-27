@@ -21,7 +21,7 @@
 			<div class="module module-login span4 offset4">
 				<form method="POST" class="form-vertical" action="{{URL::to('login')}}" accept-charset="UTF-8" id="login" name="login">
 					<div class="module-head">
-						<h3>Sign In to System</h3>
+						<h3>Welcome to Kissproof.id</h3>
 					</div>
 					<div class="module-body">
 						<div class="control-group">
@@ -38,7 +38,7 @@
 					<div class="module-foot">
 						<div class="control-group">
 							<div class="controls clearfix">
-								<button type="submit" class="btn btn-default pull-right">Login</button>
+								<button type="submit" class="btn btn-inverse pull-right">Login</button>
 								<label class="checkbox">
 									<input type="checkbox" name="rememberme"> Remember me
 								</label>
