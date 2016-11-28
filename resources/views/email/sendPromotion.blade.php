@@ -110,7 +110,7 @@
     </tr>
     <tr style="background:#e8e8e8;">
     <td align="center" colspan="2" style="padding:10px;">
-    <font style="font-family: 'Nunito', sans-serif;color:#949494; font-size:12px;">&copy;Copyright 2016 Kissproof.id - Andre Siantana | All right reserved</font>
+    <font style="font-family: 'Nunito', sans-serif;color:#949494; font-size:12px;">&copy;Copyright 2016 Kissproof.id - <a href="https://www.linkedin.com/in/andresiantana" target="_blank">Andre Siantana</a> | All right reserved</font>
     </td>
     </tr>
     </tbody>
