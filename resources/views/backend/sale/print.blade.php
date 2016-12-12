@@ -18,7 +18,12 @@
         <tr>
             <td>
                 <b>Pengirim :</b><br/>
-                {{ucwords($data[0]->sender)}}<br/><br/>
+                @if($data[0]->sender == 'Kissproof.id')
+                    {{ucwords($data[0]->sender)}} (081235362979)
+                @else
+                    {{ucwords($data[0]->sender)}}
+                @endif
+                <br/><br/>
                 <b>Penerima :</b><br/>
                 {{$data[0]->customer}} <br/>
                 {{$data[0]->email}} <br/>
