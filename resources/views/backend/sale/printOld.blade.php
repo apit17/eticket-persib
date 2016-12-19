@@ -38,7 +38,7 @@
     </table>
     @if($data[0]->sender == 'Kissproof.id')
         <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-        <table width="100%" align="center"product>
+        <table width="100%" align="center">
             <tr>
                 <th class="product">No.</th>
                 <th class="product">Produk</th>

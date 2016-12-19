@@ -85,7 +85,7 @@
                             <br/>
                             <label class="control-label label" for="email">Email</label>
                             <div class="controls">
-                                <input name="email" type="email" id="email"  placeholder="Enter Email" class="span8" required>
+                                <input name="email" type="email" id="email"  placeholder="Enter Email" class="span8">
                             </div>
                             <br/>
                             <label class="control-label label" for="city">Hometown</label>

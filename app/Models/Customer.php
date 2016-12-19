@@ -14,19 +14,19 @@ class Customer extends Model
      */
     public function insertNewCustomer($data)
     {
-        $check = $this->where('email','=',$data['email'])->first();
+        // $check = $this->where('email','=',$data['email'])->first();
 
-        if (count($check) > 0) {
-            $check->name = $data['name'];
-            $check->phone = $data['phone'];
-            $check->city = $data['city'];
+        // if (count($check) > 0) {
+        //     $check->name = $data['name'];
+        //     $check->phone = $data['phone'];
+        //     $check->city = $data['city'];
 
-            if ($check->save()) {
-                return $check->id;
-            } else {
-                return false;
-            }
-        } else {
+        //     if ($check->save()) {
+        //         return $check->id;
+        //     } else {
+        //         return false;
+        //     }
+        // } else {
             $this->name = $data['name'];
             $this->phone = $data['phone'];
             $this->email = $data['email'];
@@ -37,7 +37,7 @@ class Customer extends Model
             } else {
                 return false;
             }
-        }
+        // }
     }
 
     /**

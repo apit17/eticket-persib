@@ -42,6 +42,23 @@
         </tr>
     </table>
     <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <table width="100%" align="center">
+            <tr>
+                <th class="product">No.</th>
+                <th class="product">Produk</th>
+                <th class="product">Warna</th>
+                <th class="product">Jumlah</th>
+            </tr>
+            @foreach($data as $i => $val)
+                <tr>
+                    <td align="center" class="product">{{$i+1}}</td>
+                    <td align="center" class="product">{{ucwords($val->product)}}</td>
+                    <td align="center" class="product">{{ucwords($val->color)}}</td>
+                    <td align="center" class="product">{{$val->qty}}</td>
+                </tr>
+            @endforeach
+        </table>
+        <br/><br/>
     <h4>Terima kasih atas kepercayaan Anda.</h4>
 </div>
 </body>
