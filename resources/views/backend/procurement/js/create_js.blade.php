@@ -2,7 +2,7 @@
 $(document).ready(function() {
     $('#transactionMenu').addClass('in');
     $('#procurement-menu a').addClass('active-menu');
-    $('#date').datepicker({ dateFormat: 'dd-mm-yy', maxDate: '+0D'});
+    $('#date').datepicker({ dateFormat: 'dd-mm-yy'});
     // The maximum number of options
     var MAX_OPTIONS = 5;
     $('#form-procurement')
