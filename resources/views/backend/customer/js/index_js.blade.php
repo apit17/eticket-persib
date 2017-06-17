@@ -14,6 +14,7 @@ $(document).ready(function() {
         columns: [
             { data: null, name: null, orderable: false},
             { data: 'name', name: 'name', orderable: true, searchable: true},
+            { data: 'noid', name: 'noid', orderable: true, searchable: true},
             { data: 'email', name: 'email', orderable: true, searchable: true},
             { data: 'phone', name: 'phone', orderable: true, searchable: true },
             { data: 'city', name: 'city', orderable: true, searchable: true }

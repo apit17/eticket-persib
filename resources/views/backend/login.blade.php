@@ -9,7 +9,7 @@
 			</a>
 
 		  	<a class="brand" href="">
-		  		<img src="{!! asset('asset/images/lipstik.png') !!}" width="120" height="120"><font size="6" color="#AC124C"> Kissproof ID</font>
+		  		<img src="{!! asset('asset/images/lipstik.png') !!}" width="120" height="120"><font size="6" color="#0000FF"> E-Ticket Persib</font>
 		  	</a>
 		</div>
 	</div><!-- /navbar-inner -->
@@ -21,7 +21,7 @@
 			<div class="module module-login span4 offset4">
 				<form method="POST" class="form-vertical" action="{{URL::to('login')}}" accept-charset="UTF-8" id="login" name="login">
 					<div class="module-head">
-						<h3>Welcome to Kissproof.id</h3>
+						<h3>Welcome to E-Ticket Persib</h3>
 					</div>
 					<div class="module-body">
 						<div class="control-group">

@@ -74,10 +74,10 @@ class ProductController extends Controller
         $post = $request->all();
         $insert = $this->model->createNewProduct($post);
         if (!empty($insert->id)) {
-            session()->flash('flash_message','Product has been registered');
+            session()->flash('flash_message','Ticket has been sent');
             return Redirect::back();
         } else {
-            session()->flash('flash_message_error','Register product failed');
+            session()->flash('flash_message_error','Sent Ticket failed');
             return Redirect::back();
         }
     }
@@ -152,10 +152,10 @@ class ProductController extends Controller
         $model = $this->model->find($data['ID']);
 
         if ($model->forceDelete()) {
-            session()->flash('flash_message', 'Product has been deleted');
+            session()->flash('flash_message', 'Ticket has been deleted');
             return Redirect::back();
         } else {
-            session()->flash('flash_message_error', 'Delete Product failed');
+            session()->flash('flash_message_error', 'Delete Ticket failed');
             return Redirect::back();
         }
     }

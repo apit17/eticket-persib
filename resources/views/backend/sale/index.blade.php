@@ -1,5 +1,6 @@
 @extends('backend.index')
 @section('style')
+@section('title', '| Transaction')
 <style type="text/css">
 
 </style>
@@ -9,7 +10,7 @@
     <div class="content">
         <div class="module">
             <div class="module-head">
-                <h3>Sales Transaction Management</h3>
+                <h3>Transaction Management</h3>
             </div>
             <div class="module-body">
                 <a href="{{URL::to('admin/sale/create')}}"><button type="button" class="btn btn-inverse add" title="Create New"><i class="menu-icon icon-plus"></i>ADD</button></a><br/>
@@ -20,11 +21,11 @@
                                 <tr>
                                     <th width="1%">No.</th>
                                     <th>Date</th>
-                                    <th width="5%">Sale Code</th>
+                                    <th width="5%">Transaction Code</th>
                                     <th>Customer</th>
                                     <th width="13%">Total Payment</th>
-                                    <th>Shipping Address</th>
-                                    <th width="18%">Resi Number</th>
+                                    <th>Address</th>
+                                    <th width="5%">Resi Number</th>
                                     <th width="13%">Action</th>
                                 </tr>
                             </thead>

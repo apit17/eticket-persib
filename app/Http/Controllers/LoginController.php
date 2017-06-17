@@ -89,7 +89,7 @@ class LoginController extends Controller
                     // Authenticate the user
                     $user = Sentry::authenticate($credentials, false);
 
-                    return Redirect::to('admin/statistic')->with('flash_message', 'Welcome '.ucwords($admin->first_name.' '.$admin->last_name).' to Kissproof ID ♥♥♥');
+                    return Redirect::to('admin/statistic')->with('flash_message', 'Welcome '.ucwords($admin->first_name.' '.$admin->last_name).' to E-Ticket Persib ♥♥♥');
                 } else {
                     session()->flash('flash_message_error', 'You Did Not Have Permissions to Logged in');
                     return Redirect::back();
@@ -141,6 +141,6 @@ class LoginController extends Controller
     {
         session()->flush();
         Sentry::logout();
-        return Redirect::to('/')->with('flash_message_error', 'You successfully logout dear ♥♥♥');
+        return Redirect::to('/')->with('flash_message_error', 'You successfully logout ♥♥♥');
     }
 }

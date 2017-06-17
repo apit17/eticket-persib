@@ -5,7 +5,7 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                <i class="icon-reorder shaded"></i></a><a class="brand" href=""><font color="#AC124C" size="6"><img src="{!! asset('asset/images/lipstik.png') !!}" width="120" height="120"> Kissproof ID</font></a>
+                <i class="icon-reorder shaded"></i></a><a class="brand" href=""><font color="#0000FF" size="6"><img src="{!! asset('asset/images/lipstik.png') !!}" width="120" height="120"> E-Ticket Persib</font></a>
         </div>
     </div>
     <!-- /navbar-inner -->
@@ -21,20 +21,16 @@
 
                         <li id="statistic-menu"><a href="{{URL::to('admin/statistic')}}"><i class="menu-icon icon-dashboard"></i>Dashboard</a></li>
 
-                        <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-book"></i>Products</a></li>
-
                         <li id="customer-menu"><a href="{{URL::to('admin/customer')}}"><i class="menu-icon icon-user"></i>Customers</a></li>
 
-                        <li><a class="collapsed" data-toggle="collapse" href="#transactionMenu"><i class="menu-icon icon-shopping-cart">
-                        </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                        </i>Transactions</a>
-                            <ul id="transactionMenu" class="collapse unstyled">
-                                <li id="procurement-menu"><a href="{{URL::to('admin/procurement')}}"><i class="menu-icon icon-arrow-left"></i>Procurements</a></li>
-                                <li id="sale-menu"><a href="{{URL::to('admin/sale')}}"><i class="menu-icon icon-arrow-right"></i>Sales </a></li>
-                            </ul>
-                        </li>
+                        <li id="sale-menu"><a href="{{URL::to('admin/sale')}}"><i class="menu-icon icon-shopping-cart"></i>
+                        Transaction </a></li>
 
-                        <li id="promotion-menu"><a href="{{URL::to('admin/promotion')}}"><i class="menu-icon icon-bullhorn"></i>Promotions</a></li>
+                        <li id="classement-menu"><a href="{{URL::to('admin/classement')}}"><i class="menu-icon icon-th-list"></i>Classement</a></li>
+                        
+                        <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-credit-card"></i>Ticket</a></li>
+
+                        <li id="promotion-menu"><a href="{{URL::to('admin/promotion')}}"><i class="menu-icon icon-bullhorn"></i>Shedule</a></li>
 
                         <li id="setting-menu"><a href="{{URL::to('admin/setting')}}"><i class="menu-icon icon-cog"></i>Settings</a></li>
 

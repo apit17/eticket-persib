@@ -31,7 +31,7 @@ class Sale extends Model
         return $this->join('sale_details','sales.id','=','sale_details.sale_id')
             ->join('products','sale_details.product_id','=','products.id')
             ->join('customers','sales.customer_id','=','customers.id')
-            ->select('sales.code','products.name','products.color','sale_details.price','sale_details.qty','customers.email')
+            ->select('sales.code','products.name','products.color','sale_details.price','sale_details.qty','customers.email', 'customers.noid')
             ->where('sale_details.sale_id',$id)
             ->get();
     }
@@ -62,7 +62,7 @@ class Sale extends Model
 
         //set sender
         if ($data['sender'] == 1) {
-            $sender = 'Kissproof.id';
+            $sender = 'E-Ticket';
         } else {
             $sender = $data['sender_other'];
         }
@@ -71,6 +71,7 @@ class Sale extends Model
         $this->code = Kissproof::generateRandomCode();
         $this->date = date('Y-m-d',strtotime($data['date']));
         $this->total = $grandTotal;
+        // $this->noid = $data['noid'];
         $this->address = $data['address'];
         $this->no_resi = '';
         $this->sender = $sender;
@@ -92,7 +93,7 @@ class Sale extends Model
         return $this->join('sale_details','sales.id','=','sale_details.sale_id')
             ->join('products','sale_details.product_id','=','products.id')
             ->join('customers','sales.customer_id','=','customers.id')
-            ->select('sales.code','sales.date','sales.total','sales.address','sender','products.name as product','products.color','sale_details.price','sale_details.qty','customers.name as customer','customers.phone','customers.email')
+            ->select('sales.code','sales.date','sales.total','sales.address','sender','products.name as product','products.color','sale_details.price','sale_details.qty','customers.name as customer','customers.noid','customers.phone','customers.email')
             ->where('sale_details.sale_id',$id)
             ->get();
     }

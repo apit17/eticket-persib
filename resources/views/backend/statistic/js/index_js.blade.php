@@ -56,7 +56,7 @@ function loadGraphicIncome()
                             type: 'line'
                         },
                         title: {
-                            text: 'Kissproof Income'
+                            text: 'Ticket Income'
                         },
                         xAxis: {
                             categories: obj.date
@@ -99,7 +99,7 @@ function loadGraphicOutcome()
                             type: 'line'
                         },
                         title: {
-                            text: 'Kissproof Outcome'
+                            text: 'Ticket Outcome'
                         },
                         xAxis: {
                             categories: obj.date

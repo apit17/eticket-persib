@@ -1,4 +1,5 @@
 @extends('backend.index')
+@section('title', '| Ticket')
 @section('style')
 <style type="text/css">
 
@@ -9,7 +10,7 @@
     <div class="content">
         <div class="module">
             <div class="module-head">
-                <h3>Products Management</h3>
+                <h3>Ticket Management</h3>
             </div>
             <div class="module-body">
                 <button type="button" class="btn btn-inverse add" data-toggle="modal" data-target="#myModalAdd" title="Create New"><i class="menu-icon icon-plus"></i>ADD</button><br/>
@@ -19,8 +20,8 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Color</th>
+                                    <th>Category</th>
+                                    <th>Match</th>
                                     <th>Price</th>
                                     <th>Stock</th>
                                     <th>Action</th>
@@ -42,20 +43,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Product</h4>
+        <h4 class="modal-title">Add Ticket</h4>
       </div>
         <form class="row-fluid" method="POST" action="{{URL::to('/admin/product/add')}}" accept-charset="UTF-8" id="create-product" name="create-product" enctype="multipart/form-data">
           <div class="modal-body">
           <center>
             <input name="id" class="form-control" type="hidden" id="id">
             <div class="controls">
-                <input name="name" class="span10" id="name" placeholder="Enter Name, ex: kissproof seri 1">
+                <input name="name" class="span10" id="name" placeholder="Enter Category Ticket, ex: Tribun Timur">
             </div>
             <div class="controls">
-                <input name="color" class="span10" id="color" placeholder="Enter Color, ex: merah" style="margin-top:20px">
+                <input name="color" class="span10" id="color" placeholder="Enter Match, ex: Persib VS Persija" style="margin-top:20px">
             </div>
             <div class="controls">
-                <input name="price" class="span10 priceFormat" id="price" placeholder="Enter Price, ex: 25000" style="margin-top:20px">
+                <input name="price" class="span10 priceFormat" id="price" placeholder="Enter Price, ex: 75000" style="margin-top:20px">
             </div>
             <div class="controls">
                 <input type="number" min="0" name="stock" class="span10" id="stock" placeholder="Enter Stock, Ex: 10" style="margin-top:20px">
@@ -79,11 +80,11 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Delete Product</h4>
+          <h4 class="modal-title">Delete Ticket</h4>
         </div>
         <form method="POST" action="{{URL::to('/admin/product/delete')}}" accept-charset="UTF-8" id="delete-product" name="delete-product">
         <div class="modal-body">
-            <p>Are you sure want to remove this product ?</p>
+            <p>Are you sure want to remove this Ticket ?</p>
             <input name="ID" class="form-control" type="hidden" id="ID">
         </div>
         <div class="modal-footer">

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kissproof ID</title>
+    <title>E-Ticket Persib @yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="{!! asset('asset/images/lips.png') !!}" />
     <link type="text/css" href="{!! asset('asset/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
     <link type="text/css" href="{!! asset('asset/bootstrap/css/bootstrap-responsive.min.css') !!}" rel="stylesheet">
@@ -14,6 +14,9 @@
     <link type="text/css" href="{!! asset('asset/css/dataTables.bootstrap.min.css') !!}" rel="stylesheet">
     <link type="text/css" href="{!! asset('asset/css/jquery-ui.min.css') !!}" rel="stylesheet">
     <link type="text/css" href="{!! asset('asset/css/select2.min.css') !!}" rel="stylesheet">
+    {{-- datetime css --}}
+    <link type="text/css" href="{!! asset('asset/css/bootstrap-datetimepicker.css') !!}" rel="stylesheet">
+    <link type="text/css" href="{!! asset('asset/css/bootstrap-datetimepicker.min.css') !!}" rel="stylesheet">
     @yield('style')
 </head>
 <body>
@@ -32,7 +35,7 @@
 @yield('content')
     <div class="footer">
         <div class="container">
-            <b class="copyright">&copy; 2016 Kissproof ID - <a href="https://www.linkedin.com/in/andresiantana" target="_blank">Andre Siantana</a> </b>| All rights reserved.
+            <b class="copyright">&copy; 2017 G3-Group3 Dev - <a href="http://www.persib.co.id" target="_blank">Pt. Persib Bandung Bermartabat</a> </b>| All rights reserved.
         </div>
     </div>
     <script src="{!! asset('asset/scripts/jquery-1.9.1.min.js') !!}" type="text/javascript"></script>
@@ -46,11 +49,19 @@
     <script src="{!! asset('asset/scripts/flot/jquery.flot.resize.js') !!}" type="text/javascript"></script>
     <!-- <script src="{!! asset('asset/scripts/common.js') !!}" type="text/javascript"></script> -->
     <script src="{!! asset('asset/scripts/highcharts.js') !!}" type="text/javascript"></script>
+    {{-- datetime script --}}
+    <script src="{!! asset('asset/scripts/bootstrap-datetimepicker.js') !!}" type="text/javascript"></script>
+    <script src="{!! asset('asset/scripts/bootstrap-datetimepicker.min.js') !!}" type="text/javascript"></script>
 @yield('script')
 
 </body>
 </html>
 <script type="text/javascript">
+//datetime script
+$('.datetime').datetimepicker({
+    format: 'yyyy-mm-dd hh:ii',
+            autoclose: true
+});
 jQuery(document).ready(function() {
     jQuery('div.alert-flash').delay(3000).slideUp(300);
     $(".priceFormat").keydown(function (e) {

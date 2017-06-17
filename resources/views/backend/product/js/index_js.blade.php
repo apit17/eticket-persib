@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
-    // $('#masterMenu').addClass('in');
+    $('#masterMenu').addClass('in');
     $('#product-menu a').addClass('active-menu');
     //load dataTables
     $('#product-table').DataTable({
@@ -22,7 +22,7 @@ $(document).ready(function() {
     });
     //add
     $(document).on('click','.add',function() {
-        $('#myModalAdd .modal-title').text('Add Product');
+        $('#myModalAdd .modal-title').text('Add Ticket');
         $('#create-product').attr('action',"{{URL::to('/admin/product/add')}}");
         $('#myModalAdd #stock').attr('disabled',false);
         $('#myModalAdd #tips').html('');
@@ -45,7 +45,8 @@ $(document).ready(function() {
                     $('#myModalAdd #name').val(obj.name);
                     $('#myModalAdd #color').val(obj.color);
                     $('#myModalAdd #price').val(obj.price)
-                    $('#myModalAdd #stock').val(obj.stock).attr('disabled',true);
+                    $('#myModalAdd #stock').val(obj.stock);
+                    // $('#myModalAdd #stock').val(obj.stock).attr('disabled',true);
                     $('#myModalAdd #tips').html('<button type=button class=btn-primary>Tips :</button> <font color=grey> Stock only can change from procurement transaction.</font>');
                 }
             });

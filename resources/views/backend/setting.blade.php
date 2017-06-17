@@ -1,4 +1,5 @@
 @extends('backend.index')
+@section('title', '| Setting')
 @section('style')
 <style type="text/css">
 

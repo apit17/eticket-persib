@@ -1,4 +1,5 @@
 @extends('backend.index')
+@section('title', '| Add Transaction')
 @section('style')
 <style type="text/css">
 
@@ -9,24 +10,24 @@
     <div class="content">
         <div class="module">
             <div class="module-head">
-                <h3>Create New Sale</h3>
+                <h3>Create New Transaction</h3>
             </div>
             <div class="module-body">
                 <div class="module-body">
                     <form method="POST" action="{{URL::to('admin/sale/store')}}" accept-charset="UTF-8" id="form-sale" name="form-sale" enctype="multipart/form-data" class="form-horizontal row-fluid">
                         <!-- Sales Data -->
                         <div class="control-group">
-                            <b>Sale Data :</b><br/>
+                            <b>Transaction Data :</b><br/>
                             <label class="control-label label" for="date">Date</label>
                             <div class="controls">
                                 <input name="date" type="text" id="date"  placeholder="Select Date" class="span8 date-picker" required>
                             </div>
                             <br/>
                             <div class="control-group" id="productsOption">
-                                <label class="control-label label" for="products">Products</label>
+                                <label class="control-label label" for="products">Category</label>
                                     <div class="controls">
                                         <select class="form-control" name="products[]" placeholder="Choose Product" id="products" required>
-                                            <option value="">Choose Product</option>
+                                            <option value="">Choose Category</option>
                                             @foreach($product as $i => $val)
                                                 <option value="{{$val->id}}">{{ucwords($val->name)}} - {{ucwords($val->color)}} ({{$val->stock}})</option>
                                             @endforeach
@@ -53,20 +54,20 @@
                         </div>
                         <br/>
                         <div class="control-group">
-                            <label class="control-label label" for="address">Shipping Address</label>
+                            <label class="control-label label" for="address">Address</label>
                             <div class="controls">
-                                <textarea name="address" id="address" class="span8" rows="5" placeholder="Ex : Jalan Raya Bojongsoang No.169, Kec. Bojongsoang, Kab. Bandung, Bandung 40288." required></textarea>
+                                <textarea name="address" id="address" class="span8" rows="5" placeholder="Enter Address." required></textarea>
                             </div>
                             <br/>
                             <label class="control-label label" for="sender">Sender</label>
                             <div class="controls">
-                                <input type="radio" name="sender" onClick="javascript:void(setSender(1))" value="1" checked> Kissproof.id<br/>
+                                <input type="radio" name="sender" onClick="javascript:void(setSender(1))" value="1" checked> E-Ticket Persib<br/>
                                 <input type="radio" name="sender" onClick="javascript:void(setSender(2))" value="2"> Others &nbsp;
                                 <input type="text" class="span6 hide" name="sender_other" id="sender_other" placeholder="Enter Sender, Ex: Siantanashop (081224770688)">
                             </div>
                             <br/>
                             <div class="controls">
-                                <button type="button" class="btn btn-inverse btn-xs">Tips :</button><small>  Press <span class="menu-icon icon-plus"></span> to add another product.</small>
+                                <button type="button" class="btn btn-inverse btn-xs">Tips :</button><small>  Press <span class="menu-icon icon-plus"></span> to add another ticket.</small>
                             </div><br/>
                         </div>
 
@@ -76,6 +77,11 @@
                             <label class="control-label label" for="name">Name</label>
                             <div class="controls">
                                 <input name="name" type="text" id="name"  placeholder="Enter Name" class="span8" required>
+                            </div>
+                            <br/>
+                            <label class="control-label label" for="noid">No ID</label>
+                            <div class="controls">
+                                <input name="noid" type="text" id="noid"  placeholder="ex: No KTP" class="span8" required>
                             </div>
                             <br/>
                             <label class="control-label label" for="phone">Mobile Phone</label>

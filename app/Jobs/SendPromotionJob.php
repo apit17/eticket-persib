@@ -35,8 +35,8 @@ class SendPromotionJob extends Job implements ShouldQueue
         if (count($data) > 0) {
             foreach ($data as $key => $value) {
                 Mail::send('email.sendPromotion',$value, function ($message) use ($value) {
-                    $message->subject("Kissproof.id - Promosi Menarik [Anda tidak perlu membalas email ini]");
-                    $message->from('kissproof.semarang@gmail.com');
+                    $message->subject("Schedule - Pertandingan Selanjutnya [Anda tidak perlu membalas email ini]");
+                    $message->from('apit.gilang@appschef.com');
                     $message->to($value['email']);
                 });
             }

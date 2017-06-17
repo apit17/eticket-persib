@@ -28,6 +28,7 @@ class Customer extends Model
         //     }
         // } else {
             $this->name = $data['name'];
+            $this->noid= $data['noid'];
             $this->phone = $data['phone'];
             $this->email = $data['email'];
             $this->city = $data['city'];

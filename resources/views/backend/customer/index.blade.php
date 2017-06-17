@@ -1,4 +1,5 @@
 @extends('backend.index')
+@section('title', '| Customer')
 @section('style')
 <style type="text/css">
 
@@ -19,6 +20,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Name</th>
+                                    <th>No ID</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Hometown</th>

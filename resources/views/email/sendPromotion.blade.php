@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Kissproof.id</title>
+    <title>E-Ticket</title>
     <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     <style type="text/css">
@@ -39,9 +39,9 @@
     <td>
     <table width="550"  cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center">
     <tbody>
-    <tr bgcolor="#AC124C">
+    <tr bgcolor="#000080">
     <td style="padding:0 30px" colspan="2" align="center">
-    <h2 style="color:#fff;font-family: 'Yanone Kaffeesatz', sans-serif;text-transform:uppercase;letter-spacing:1px">Informasi Promo Kissproof.id</h2>
+    <h2 style="color:#fff;font-family: 'Yanone Kaffeesatz', sans-serif;text-transform:uppercase;letter-spacing:1px">Informasi Jadwal Pertandingan</h2>
     </td>
     </tr>
     <tr>
@@ -55,14 +55,15 @@
     <tbody>
     <tr>
     <td style="padding:40px 0 10px" align="center">
-    <font style="font-family: 'Nunito', sans-serif;color:#000000; font-size:16px;">Halo <b>{{$name}}</b>, nikmati beragam promo menarik dengan berbelanja di Kissproof.id</font>
+    <font style="font-family: 'Nunito', sans-serif;color:#000080; font-size:16px;">Halo <b>{{$name}}</b>, Persiapkan dirimu untuk pertandingan berikutnya dan segera pesan tiket di E-Ticket Persib</font>
     <p style="font-family: 'Nunito', sans-serif;color:#585858; font-size:14px;"></p>
     </td>
     </tr>
     <tr>
-    <td align="center" style="padding: 10px 15px ;border:2px solid #b7b7b7;font-family: 'Nunito', sans-serif;color:#585858; font-size:14px;">
-    <span style="color:#AC124C;font-weight:bold;">{{strtoupper($title)}}</span><br/><br/>
-    <span style="color:#AC124C;font-weight:bold;">{{$description}}</span>
+    <td align="center" style="padding: 10px 15px ;border:2px solid #000080;font-family: 'Nunito', sans-serif;color:#585858; font-size:14px;">
+    <span style="color:#000080;font-weight:bold;">{{strtoupper($title)}}</span><br/><br/>
+    <span style="color:#000080;font-weight:bold;">{{$description}}</span>
+    <span style="color:#000080;font-weight:bold;">{{$date}}</span>
     </td>
     </tr>
     <tr>
@@ -72,7 +73,7 @@
     <td align="center">
         <ul style="list-style: none;padding-left: 0;margin-bottom: 0;">
             <li>
-                <a href="https://www.instagram.com/kissproof.id/"><img src="https://d13yacurqjgara.cloudfront.net/users/334914/screenshots/2707164/dribbble_instagram_icon_app_1x.jpg" width="200" height="150" /></a>
+                <a href="https://www.instagram.com/persib_official/"><img src="http://i.dailymail.co.uk/i/pix/2016/05/11/14/340ADB5400000578-3584623-image-a-28_1462973815643.jpg" width="200" height="150" /></a>
             </li>
         </ul>
     </td>
@@ -99,8 +100,8 @@
     <tbody>
     <tr>
     <td colspan="2" align="center">
-    <p style="font-family: 'Nunito', sans-serif;color:#949494; font-size:12px;">
-    Kissproof.id adalah toko online penyedia lipstik brand Kissproof terlengkap dengan harga terjangkau, pelayanan terbaik, menyediakan pengiriman ke dalam dan luar negeri.
+    <p style="font-family: 'Nunito', sans-serif;color:#000080; font-size:24px;"><b>
+    Bagimu PERSIB Jiwa Raga Kami</b>
     </p>
     </td>
     </tr>
@@ -110,7 +111,7 @@
     </tr>
     <tr style="background:#e8e8e8;">
     <td align="center" colspan="2" style="padding:10px;">
-    <font style="font-family: 'Nunito', sans-serif;color:#949494; font-size:12px;">&copy;Copyright 2016 Kissproof.id - <a href="https://www.linkedin.com/in/andresiantana" target="_blank">Andre Siantana</a> | All right reserved</font>
+    <font style="font-family: 'Nunito', sans-serif;color:#949494; font-size:12px;">&copy;Copyright 2017  E-Ticket Persib- <a href="https://www.instagram.com/apitgilang/" target="_blank">G3-Group3</a> | All right reserved</font>
     </td>
     </tr>
     </tbody>

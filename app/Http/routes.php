@@ -14,6 +14,7 @@
 Route::get('/', 'LoginController@index');
 Route::post('login', ['uses'=>'LoginController@login']);
 
+
 /**
  * Admin Routes Group
  */
@@ -64,8 +65,20 @@ Route::group(['prefix' => 'admin'], function() {
         Route::group(['prefix' => 'promotion'],function() {
             Route::get('/',['uses' => 'PromotionController@index']);
             Route::get('/datatables',['uses' => 'PromotionController@datatables']);
+            Route::get('/create',['uses' => 'PromotionController@create']);
             Route::post('/add', ['uses' => 'PromotionController@store']);
             Route::post('/delete', ['uses' => 'PromotionController@destroy']);
+            Route::resource('admin', 'PromotionController', ['only' => ['edit', 'update']]);
+        });
+
+        /* Classement start here */
+        Route::group(['prefix' => 'classement'],function() {
+            Route::get('/',['uses' => 'ClassementController@index']);
+            Route::get('/datatables',['uses' => 'ClassementController@datatables']);
+            Route::get('/create',['uses' => 'ClassementController@create']);
+            Route::post('/add', ['uses' => 'ClassementController@store']);
+            Route::post('/delete', ['uses' => 'ClassementController@destroy']);
+            Route::resource('admin', 'ClassementController', ['only' => ['edit', 'update']]);
         });
 
         /* Statistic start here */

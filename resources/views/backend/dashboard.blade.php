@@ -1,4 +1,6 @@
 @extends('backend.index')
+@section('title', '| Dashboard')
+@stop
 @section('style')
 <style type="text/css">
 

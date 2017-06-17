@@ -18,7 +18,7 @@
         <tr>
             <td>
                 <b>Pengirim :</b><br/>
-                @if($data[0]->sender == 'Kissproof.id')
+                @if($data[0]->sender == 'E-Ticket Persib')
                     {{ucwords($data[0]->sender)}} (081235362979)
                 @else
                     {{ucwords($data[0]->sender)}}
@@ -45,8 +45,8 @@
         <table width="100%" align="center">
             <tr>
                 <th class="product">No.</th>
-                <th class="product">Produk</th>
-                <th class="product">Warna</th>
+                <th class="product">Category Ticket</th>
+                <th class="product">Match</th>
                 <th class="product">Jumlah</th>
             </tr>
             @foreach($data as $i => $val)

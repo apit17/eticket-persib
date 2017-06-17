@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Promotion extends Model
 {
     protected $table = 'promotions';
+    protected $primaryKey ='id';
 
     /**
      * [getAllPromotion]
@@ -17,20 +18,26 @@ class Promotion extends Model
         return $this->orderBy('created_at','DESC')->get();
     }
 
+    public function getDetailPromotion($id)
+    {
+        return $this->find($id);
+    }
     /**
      * [createNewPromotion]
      * @param  [type] $data [array]
      * @return [type]       [id]
      */
-    public function createNewPromotion($data)
-    {
-        $this->title = $data['title'];
-        $this->description = $data['description'];
+    // public function createNewPromotion($data)
+    // {
+    //     $this->title = $data['title'];
+    //     $this->description = $data['description'];
+    //     $this->date = $data['date'];
+    //     $this->image1 = $data['image1'];
 
-        if ($this->save()) {
-            return $this;
-        } else {
-            return false;
-        }
-    }
+    //     if ($this->save()) {
+    //         return $this;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }

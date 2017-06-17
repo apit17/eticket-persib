@@ -112,7 +112,7 @@ class SaleController extends Controller
         $getDetail = $this->sale->getDetailSale($post['id']);
         $header = '<table class="table table-striped table-bordered table-condensed">
             <tr>
-                <th>Product</th>
+                <th>Category Ticket</th>
                 <th>Price</th>
                 <th>Quantity</th>
             </tr>';
@@ -173,8 +173,8 @@ class SaleController extends Controller
                 'resi'  => strtoupper($sale->no_resi)
             );
             Mail::send('email.sendResiNumber', $insert, function ($message) use ($insert) {
-                $message->subject("Kissproof.id - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");
-                $message->from('kissproof.semarang@gmail.com');
+                $message->subject("E-Ticket Persib - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");
+                $message->from('apit.gilang@appschef.com');
                 $message->to($insert['email']);
             });
         }
