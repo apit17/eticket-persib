@@ -106,18 +106,18 @@ class PromotionController extends Controller
         $post->date = $request->date;
 
         if ($request->hasFile('image1')) {
-            $image = $request->file('image1');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image1 = $request->file('image1');
+            $filename = time() . '.' . $image1->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image)->resize(800, 400)->save($location);
+            Image::make($image1)->resize(800, 400)->save($location);
 
             $post->image1 = $filename;
         }
         if ($request->hasFile('image2')) {
-            $image1 = $request->file('image2');
-            $filename1 = time() . '.' . $image1->getClientOriginalExtension();
+            $image2 = $request->file('image2');
+            $filename1 = time() . '.' . $image2->getClientOriginalExtension();
             $location1 = public_path('images1/' . $filename1);
-            Image::make($image1)->resize(800, 400)->save($location1);
+            Image::make($image2)->resize(800, 400)->save($location1);
 
             $post->image2 = $filename1;
         }

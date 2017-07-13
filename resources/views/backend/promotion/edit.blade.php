@@ -57,7 +57,7 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <a href="{{ URL::to('admin/promotion') }}"><button type="button" class="btn btn-danger">Cancle</button></a>
+                                <a href="{{ URL::to('admin/promotion') }}"><button type="button" class="btn btn-danger">Cancel</button></a>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>

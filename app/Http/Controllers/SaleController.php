@@ -25,6 +25,7 @@ class SaleController extends Controller
         $this->detail = $detail;
         $this->product = $product;
         $this->customer = $customer;
+        
     }
 
     /**
@@ -87,6 +88,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $post = $request->all();
+        // dd($post);
         $saleData = array_slice($post, 0, 6);
         $custData = array_slice($post, 6);
 
@@ -174,7 +176,7 @@ class SaleController extends Controller
             );
             Mail::send('email.sendResiNumber', $insert, function ($message) use ($insert) {
                 $message->subject("E-Ticket Persib - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");
-                $message->from('apit.gilang@appschef.com');
+                $message->from('hariyawansetianugraha@gmail.com');
                 $message->to($insert['email']);
             });
         }

@@ -13,9 +13,9 @@ class ProductSeeder extends Seeder
     {
         $data =
             [
-                'name'       => 'kissproof seri 1',
-                'color'      => 'merah',
-                'price'      => 25000,
+                'name'       => 'Tribun Timur',
+                'color'      => 'Persib vs Persija',
+                'price'      => 75000,
                 'stock'      => 10,
                 'created_at' => '2016-10-12 12:00:00',
                 'updated_at' => '2016-10-12 12:00:00'

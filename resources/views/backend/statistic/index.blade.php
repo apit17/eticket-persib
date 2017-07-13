@@ -51,7 +51,7 @@
             </div>
             <!--/.module-->
             <br />
-            <div class="module">
+            <!-- <div class="module">
                 <div class="module-head">
                     <h3>
                         Statistic - Outcome</h3>
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!--/.content-->
     </div>

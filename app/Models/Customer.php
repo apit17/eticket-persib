@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $table = 'customers';
-
+    protected $fillable = ['name','noid','phone','email','city','address'];
     /**
      * [insertNewCustomer]
      * @return [type] [array]
@@ -39,6 +39,18 @@ class Customer extends Model
                 return false;
             }
         // }
+    }
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function getUserData($id)
+    {
+        $userData = $this->select('customers.noid','customers.phone','customers.email', $id)->get();
+        return $userData;
     }
 
     /**

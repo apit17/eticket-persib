@@ -13,9 +13,9 @@ class AddImage1AndImage2AndDateToPromotionsTable extends Migration
     public function up()
     {
         Schema::table('promotions', function (Blueprint $table) {
-            $table->string('image1')->change();
-            $table->binary('image2');
-            $table->dateTime('date');
+            $table->string('image1');
+            // $table->binary('image2');
+            // $table->dateTime('date');
         });
     }
 

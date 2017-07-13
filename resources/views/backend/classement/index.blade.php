@@ -15,8 +15,10 @@
             <div class="module-body">
                 <button type="button" class="btn btn-inverse add" data-toggle="modal" data-target="#myModalAdd" title="Create New"><i class="menu-icon icon-plus"></i></button>
 
+                @if(isset($posts))
                 @foreach($posts as $post)
-                <a type="button" class="btn btn-info edit" data-id="{{$post->id}}" data-toggle="modal" data-target="#myModalEdit" title="Create New"><i class="menu-icon icon-edit"></i></a><br/><hr>
+
+                <a type="button" class="btn btn-info edit" data-id="{{$post->id}}" data-toggle="modal" data-target="#myModalEdit" title="Update New"><i class="menu-icon icon-edit"></i></a><br/><hr>
 
                 <div class="chart inline-legend grid" style=" margin-top:10px;">
                     <div id="placeholder2" class="graph" style="height: 400px;">
@@ -33,6 +35,7 @@
                             </tr>
                         </thead>
                     @endforeach
+                    @endif
                     </table> 
                     </div>
                 </div>
@@ -53,7 +56,7 @@
           <center>
             <div class="controls">
                 <label class="control-label label span6">Enter Table Classement Image</label>
-                <input type="file" name="image" class="span10" id="image">
+                <input type="file" name="image" class="span10" id="image" required>
             </div><br><br>
             <div class="controls">
                 <label class="control-label label span6">Enter Top Scorer Image</label>
@@ -63,7 +66,7 @@
             <br><div id="tips" style="margin-left:43px"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" required>Cancel</button>
             <button type="submit" class="btn btn-success" id="btn-submit">Submit</button>
           </div>
         </form>
@@ -77,9 +80,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Classement</h4>
+        <h4 class="modal-title">Update New Classement</h4>
       </div>
-        <form class="row-fluid" method="POST" action="{{route('admin.classement.admin.update', $post->id)}}" accept-charset="UTF-8" id="create-product" name="create-classement" enctype="multipart/form-data">
+        <form class="row-fluid" method="POST" action="{{route('admin.classement.admin.update', 1)}}" accept-charset="UTF-8" id="create-product" name="create-classement" enctype="multipart/form-data">
         {!! csrf_field() !!}{!! method_field('PUT') !!}
           <div class="modal-body">
           <center>

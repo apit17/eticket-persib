@@ -12,7 +12,7 @@ class DropClassementsTable extends Migration
      */
     public function up()
     {
-        Schema::drop('classements');
+        // Schema::drop('classements');
     }
 
     /**

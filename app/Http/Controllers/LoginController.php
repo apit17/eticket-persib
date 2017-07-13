@@ -143,4 +143,5 @@ class LoginController extends Controller
         Sentry::logout();
         return Redirect::to('/')->with('flash_message_error', 'You successfully logout ♥♥♥');
     }
+
 }

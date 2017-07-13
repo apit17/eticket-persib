@@ -13,11 +13,11 @@ class UserAdminSeeder extends Seeder
     {
         // Create the user
         $user = Sentry::createUser(array(
-            'email'     => 'admin@kissproof.com',
-            'password'  => '01012015',
+            'email'     => 'admin@eticket.com',
+            'password'  => 'qwerty',
             'activated' => true,
-            'first_name' => 'Ilma',
-            'last_name' => 'Rizki',
+            'first_name' => 'Admin',
+            'last_name' => 'Eticket',
         ));
 
         // Find the group using the group id

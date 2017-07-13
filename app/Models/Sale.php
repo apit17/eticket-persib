@@ -41,13 +41,17 @@ class Sale extends Model
      * @param  [type] $data [array]
      * @return [type]       [array]
      */
-    public function insertNewSale($data,$customer_id)
+    public function insertNewSale($data,$customer_id, $android = false)
     {
-        $productData = array_filter($data['products']);
-        $qtyData = array_filter($data['qtys']);
+        
 
         //get total price
-        foreach ($productData as $i => $prod_id) {
+        if ($android) {
+            $grandTotal = Product::find($data['products'])->price;
+        } else {
+            $productData = array_filter($data['products']);
+        $qtyData = array_filter($data['qtys']);
+            foreach ($productData as $i => $prod_id) {
             $product = Product::find($prod_id);
             $prices[] = $product->price;
         }
@@ -58,6 +62,7 @@ class Sale extends Model
         $grandTotal = 0;
         foreach ($total as $iii => $val) {
             $grandTotal += $val;
+        }
         }
 
         //set sender

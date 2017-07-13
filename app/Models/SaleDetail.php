@@ -15,10 +15,16 @@ class SaleDetail extends Model
      * @param  [type] $data    [array]
      * @return [type]          [array]
      */
-    public function insertNewDetailSale($sale_id, $data)
+    public function insertNewDetailSale($sale_id, $data, $android = false)
     {
-        $productData = array_filter($data['products']);
-        $qtyData = array_filter($data['qtys']);
+        if ($android) {
+            $productData = array_filter([$data['products']]);
+            $qtyData = array_filter([$data['qtys']]);
+        } else {
+            $productData = array_filter($data['products']);
+            $qtyData = array_filter($data['qtys']);
+        }
+        
 
         foreach ($productData as $i => $prod_id) {
             $product = Product::find($prod_id);

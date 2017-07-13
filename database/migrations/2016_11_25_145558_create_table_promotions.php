@@ -16,6 +16,9 @@ class CreateTablePromotions extends Migration
             $table->increments('id');
             $table->text('title')->default('');
             $table->text('description')->default('');
+            $table->string('image1');
+            $table->binary('image2');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
