@@ -14,8 +14,7 @@
             </div>
             <div class="module-body">
                 <a href="{{URL::to('/admin/promotion/create')}}"><button type="button" class="btn btn-inverse add" title="Create New"><i class="menu-icon icon-plus"></i>ADD</button></a><br/>
-                <div class="chart inline-legend grid" style=" margin-top:10px;">
-                    <div id="placeholder2" class="graph" style="height: 400px;">
+                
                         <table class="table table-bordered" width="100%" id="promotion-table">
                             <thead>
                                 <tr>
@@ -43,8 +42,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                </div>
+                    
             </div>
         </div>
     </div>

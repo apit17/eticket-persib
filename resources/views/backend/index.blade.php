@@ -34,6 +34,8 @@
 
                         <li id="setting-menu"><a href="{{URL::to('admin/setting')}}"><i class="menu-icon icon-cog"></i>Settings</a></li>
 
+                        <!-- <li id="print-menu"><a href="{{URL::to('admin/print')}}"><i class="menu-icon icon-print"></i>Print Tiket</a></li> -->
+
                         <li><a href="{{URL::to('admin/logout')}}"><i class="menu-icon icon-signout"></i>Logout </a></li>
                     </ul>
                 </div>

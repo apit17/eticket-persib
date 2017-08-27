@@ -14,7 +14,7 @@ $(document).ready(function() {
         columns: [
             { data: null, name: null, orderable: false},
             { data: 'name', name: 'name', orderable: true},
-            { data: 'color', name: 'color', orderable: true },
+            // { data: 'color', name: 'color', orderable: true },
             { data: 'price', name: 'price', orderable: true },
             { data: 'stock', name: 'stock', orderable: true },
             { data: 'action', name: 'action', orderable: false, searchable: false }
@@ -43,7 +43,7 @@ $(document).ready(function() {
                     $('#create-product').attr('action',"{{URL::to('/admin/product/update')}}");
                     $('#myModalAdd #id').val(obj.id);
                     $('#myModalAdd #name').val(obj.name);
-                    $('#myModalAdd #color').val(obj.color);
+                    // $('#myModalAdd #color').val(obj.color);
                     $('#myModalAdd #price').val(obj.price)
                     $('#myModalAdd #stock').val(obj.stock);
                     // $('#myModalAdd #stock').val(obj.stock).attr('disabled',true);

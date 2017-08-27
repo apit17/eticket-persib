@@ -14,8 +14,6 @@
             </div>
             <div class="module-body">
                 <!-- <a href="{{URL::to('admin/sale/create')}}"><button type="button" class="btn btn-inverse add" title="Create New"><i class="menu-icon icon-plus"></i>ADD</button></a> --><br/>
-                <div class="chart inline-legend grid" style=" margin-top:10px;">
-                    <div id="placeholder2" class="graph" style="height: 400px;">
                         <table class="table table-bordered" width="100%" id="sale-table">
                             <thead>
                                 <tr>
@@ -26,6 +24,7 @@
                                     <th width="13%">Total Payment</th>
                                     <th>Address</th>
                                     <th width="5%">Resi Number</th>
+                                    <th width="5%">Status</th>
                                     <th width="13%">Action</th>
                                 </tr>
                             </thead>
@@ -33,8 +32,6 @@
                                 <!-- Data tables append here -->
                             </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

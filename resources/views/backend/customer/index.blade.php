@@ -13,8 +13,7 @@
                 <h3>Customers Management</h3>
             </div>
             <div class="module-body">
-                <div class="chart inline-legend grid" style=" margin-top:10px;">
-                    <div id="placeholder2" class="graph" style="height: 400px;">
+                
                         <table class="table table-bordered" width="100%" id="customer-table">
                             <thead>
                                 <tr>
@@ -30,8 +29,7 @@
                                 <!-- Data tables append here -->
                             </tbody>
                         </table>
-                    </div>
-                </div>
+                    
             </div>
         </div>
     </div>

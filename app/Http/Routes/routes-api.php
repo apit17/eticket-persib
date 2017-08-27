@@ -23,6 +23,8 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::post('customer/login', 'ApiTicketController@customerLogin');
     Route::get('user', 'ApiTicketController@getUserData');
     Route::get('classement', 'ApiTicketController@getClassement');
+    Route::get('transaction', 'ApiTicketController@getTransaction');
+    Route::post('insert/transaction', 'ApiTicketController@insertImageTransaction');
 });
 
 

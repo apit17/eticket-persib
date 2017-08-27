@@ -34,6 +34,12 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label label" for="date">Tanggal Pemesanan: </label>
+                                <div class="controls">
+                                    <input type="text" name="start_date" id="" placeholder="Enter date and time" class="datetime span10" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <div class="controls">
                                     <label class="control-label label span3">Enter Logo Persib</label>
                                     <label class="control-label label span5">Enter Logo Rival</label>

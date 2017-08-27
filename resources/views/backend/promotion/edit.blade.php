@@ -37,6 +37,12 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label label" for="date">Tanggal Pemesanan: </label>
+                                <div class="controls">
+                                    <input value="{{$post->start_date}}" type="text" name="start_date" id="" placeholder="Enter date and time" class="datetime span10" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <div class="controls">
                                     <div class="row">
                                     <label class="control-label label span3">Edit Logo Persib</label>

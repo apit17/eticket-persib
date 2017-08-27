@@ -12,7 +12,7 @@ class User extends Model
 
     public function customer()
     {
-    	$this->belongsTo(Customer::class,'customer_id','id');
+    	return $this->hasOne(Customer::class,'id','customer_id');
     }
     /**
      * undocumented function
@@ -37,7 +37,7 @@ class User extends Model
      **/
     public function scopeGetLogin($query,$email,$password)
     {
-    	return $query->where('email',$email)->where('password',$password);
+    	return $query->where('email',$email)->where('password',$password)->with('customer');
     }
 
     /**

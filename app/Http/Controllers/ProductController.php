@@ -41,9 +41,9 @@ class ProductController extends Controller
             ->editColumn('name', function ($results) {
                     return ucwords($results->name);
             })
-            ->editColumn('color', function ($results) {
-                    return ucwords($results->color);
-            })
+            // ->editColumn('color', function ($results) {
+            //         return ucwords($results->color);
+            // })
             ->editColumn('price', function ($results) {
                     return Kissproof::priceFormater($results->price);
             })
@@ -121,9 +121,9 @@ class ProductController extends Controller
         if (!empty($post['name'])) {
             $model->name = $post['name'];
         }
-        if (!empty($post['color'])) {
-            $model->color = $post['color'];
-        }
+        // if (!empty($post['color'])) {
+        //     $model->color = $post['color'];
+        // }
         if (!empty($post['price'])) {
             $model->price = $post['price'];
         }

@@ -61,6 +61,13 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/datatables',['uses' => 'CustomerController@datatables']);
         });
 
+        Route::group(['prefix' => 'print'],function() {
+            Route::get('/',['uses' => 'PrintController@index']);
+            Route::get('/datatables',['uses' => 'PrintController@datatables']);
+            Route::post('/validate-print',['uses' => 'PrintController@validatePrint']);
+            Route::get('/view/{id}',['uses' => 'PrintController@show']);
+        });
+
         /* Promotion start here */
         Route::group(['prefix' => 'promotion'],function() {
             Route::get('/',['uses' => 'PromotionController@index']);

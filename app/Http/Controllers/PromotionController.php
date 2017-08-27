@@ -104,6 +104,7 @@ class PromotionController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->date = $request->date;
+        $post->start_date = $request->start_date;
 
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');
@@ -182,7 +183,7 @@ class PromotionController extends Controller
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->date = $request->input('date');
-
+        $post->start_date = $request->start_date;
         if ($request->hasFile('image1')) {
             // add the new image
             $image = $request->file('image1');

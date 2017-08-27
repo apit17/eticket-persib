@@ -21,7 +21,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Category</th>
-                                    <th>Match</th>
+                                    <!-- <th>Match</th> -->
                                     <th>Price</th>
                                     <th>Stock</th>
                                     <th>Action</th>
@@ -52,9 +52,9 @@
             <div class="controls">
                 <input name="name" class="span10" id="name" placeholder="Enter Category Ticket, ex: Tribun Timur">
             </div>
-            <div class="controls">
+            <!-- <div class="controls">
                 <input name="color" class="span10" id="color" placeholder="Enter Match, ex: Persib VS Persija" style="margin-top:20px">
-            </div>
+            </div> -->
             <div class="controls">
                 <input name="price" class="span10 priceFormat" id="price" placeholder="Enter Price, ex: 75000" style="margin-top:20px">
             </div>

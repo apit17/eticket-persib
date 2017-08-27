@@ -20,6 +20,7 @@ $(document).ready(function() {
             { data: 'total', name: 'total', orderable: true, searchable: true },
             { data: 'address', name: 'address', orderable: true, searchable: true },
             { data: 'no_resi', name: 'no_resi', orderable: true, searchable: true },
+            { data: 'status', name: 'status', orderable: true, searchable: true },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });

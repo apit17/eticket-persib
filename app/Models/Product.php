@@ -14,7 +14,7 @@ class Product extends Model
      */
     public function getAllProduct()
     {
-        return static::select('id', 'name', 'color', 'price', 'stock')->get();
+        return static::select('id', 'name',/* 'color',*/ 'price', 'stock')->get();
     }
 
     /**
@@ -25,7 +25,7 @@ class Product extends Model
     public function createNewProduct($data)
     {
         $this->name = $data['name'];
-        $this->color = $data['color'];
+        // $this->color = $data['color'];
         $this->price = $data['price'];
         $this->stock = $data['stock'];
 
@@ -52,7 +52,7 @@ class Product extends Model
      */
     public function getDropdownSale()
     {
-        return static::select('id','name', 'color', 'stock')
+        return static::select('id','name', /*'color',*/ 'stock')
             ->where('stock','<>',0)
             ->orderBy('name','ASC')->get();
     }
@@ -63,7 +63,7 @@ class Product extends Model
      */
     public function getDropdownProcurement()
     {
-        return static::select('id','name', 'color', 'stock')
+        return static::select('id','name', /*'color',*/ 'stock')
             ->orderBy('name','ASC')->get();
     }
 }

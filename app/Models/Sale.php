@@ -9,6 +9,7 @@ use App\Classes\Kissproof;
 class Sale extends Model
 {
     protected $table = 'sales';
+    protected $fillable = ['status'];
 
     /**
      * [get all data sales]
@@ -18,6 +19,19 @@ class Sale extends Model
     {
         return $this->join('customers','sales.customer_id','=','customers.id')
             ->select('sales.*','customers.name as customer')
+            ->get();
+    }
+
+    /**
+     * [get all data sales]
+     * @return [type] [array]
+     */
+    public function getTicketPrinted()
+    {
+        return $this->join('customers','sales.customer_id','=','customers.id')
+            ->select('sales.*','customers.name as customer')
+            ->where('status','=', 3)
+            // ->orderBy('updated_at','desc')
             ->get();
     }
 
@@ -41,13 +55,12 @@ class Sale extends Model
      * @param  [type] $data [array]
      * @return [type]       [array]
      */
-    public function insertNewSale($data,$customer_id, $android = false)
+    public function insertNewSale($data,$customer_id, $promotion_id, $android = false)
     {
-        
-
+        \Log::debug($data);        
         //get total price
         if ($android) {
-            $grandTotal = Product::find($data['products'])->price;
+            $grandTotal = Product::find($data['products'])->price+5000;
         } else {
             $productData = array_filter($data['products']);
         $qtyData = array_filter($data['qtys']);
@@ -72,6 +85,7 @@ class Sale extends Model
             $sender = $data['sender_other'];
         }
 
+        $this->promotion_id = $promotion_id;
         $this->customer_id = $customer_id;
         $this->code = Kissproof::generateRandomCode();
         $this->date = date('Y-m-d',strtotime($data['date']));
@@ -101,6 +115,17 @@ class Sale extends Model
             ->select('sales.code','sales.date','sales.total','sales.address','sender','products.name as product','products.color','sale_details.price','sale_details.qty','customers.name as customer','customers.noid','customers.phone','customers.email')
             ->where('sale_details.sale_id',$id)
             ->get();
+    }
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function promotion()
+    {
+        return $this->hasOne(Promotion::class, 'id', 'promotion_id');
     }
 
     /**
