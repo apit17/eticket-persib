@@ -28,7 +28,7 @@
 
                         <li id="classement-menu"><a href="{{URL::to('admin/classement')}}"><i class="menu-icon icon-th-list"></i>Classement</a></li>
                         
-                        <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-credit-card"></i>Ticket</a></li>
+                        <!-- <li id="product-menu"><a href="{{URL::to('admin/product')}}"><i class="menu-icon icon-credit-card"></i>Ticket</a></li> -->
 
                         <li id="promotion-menu"><a href="{{URL::to('admin/promotion')}}"><i class="menu-icon icon-bullhorn"></i>Shedule</a></li>
 

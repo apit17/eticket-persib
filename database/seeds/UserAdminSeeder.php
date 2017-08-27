@@ -11,6 +11,8 @@ class UserAdminSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('users')->truncate();
+        \DB::table('users_groups')->truncate();
         // Create the user
         $user = Sentry::createUser(array(
             'email'     => 'admin@eticket.com',

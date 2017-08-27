@@ -31,13 +31,13 @@
                             <tbody>
                                 @foreach($posts as $post)
                                   <tr>
-                                    <td>{{$post->title}}</td>
-                                    <td><img src="{{asset('images/'. $post->image1)}}" height="50" width="50"></td>
-                                    <td><img src="{{asset('images1/'. $post->image2)}}" height="50" width="50"></td>
-                                    <td>{{$post->description}}</td>
-                                    <td>{{$post->date}}</td>
+                                    <td>{{$post->schedule_match}}</td>
+                                    <td><img src="{{asset('images/'. $post->schedule_home_image)}}" height="50" width="50"></td>
+                                    <td><img src="{{asset('images1/'. $post->schedule_away_image)}}" height="50" width="50"></td>
+                                    <td>{{$post->schedule_stadion}}</td>
+                                    <td>{{$post->schedule_date_match}}</td>
                                     {{-- <td>{{$post->created_at}}</td> --}}
-                                    <td><a href="{{ route('admin.promotion.admin.edit', $post->id) }}" class="btn btn-small btn-info edit" title="Edit"><i class="menu-icon icon-edit"></i> </a> <a data-id="{{$post->id}}" class="btn btn-small btn-danger delete" data-toggle="modal" data-target="#myModalDelete" title="Delete"><i class="menu-icon icon-remove"></i> </a></td>
+                                    <td><a href="{{ route('admin.promotion.admin.edit', $post->id) }}" class="btn btn-small btn-info edit" title="Edit"><i class="menu-icon icon-edit"></i> </a> <a href="{{ route('admin.promotion.admin.detail', $post->id) }}" class="btn btn-small btn-success edit" title="Detail"><i class="menu-icon icon-search"></i> </a> <a data-id="{{$post->id}}" class="btn btn-small btn-danger delete" data-toggle="modal" data-target="#myModalDelete" title="Delete"><i class="menu-icon icon-remove"></i> </a></td>
                                   </tr>
                                 @endforeach
                             </tbody>

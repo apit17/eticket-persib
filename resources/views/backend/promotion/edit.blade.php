@@ -19,27 +19,27 @@
 
                     {{-- {!! Form::model($post, ['route' => ['admin/promotion/id/update', $post->id]]) !!} --}}
                         <div class="control-group">
-                        {{-- <h1>{{$post->title}}</h1> --}}
+                        {{-- <h1>{{$post->schedule_title}}</h1> --}}
                             <label class="control-label label" for="title">Title: </label>
                             <div class="controls">
-                                <input value="{{$post->title}}" type="text" name="title" id="title" placeholder="Enter title, Ex: PERSIB VS PERSIJA" class="span10" required>
+                                <input value="{{$post->schedule_match}}" type="text" name="title" id="title" placeholder="Enter title, Ex: PERSIB VS PERSIJA" class="span10" required>
                             </div><br>
                             <div class="control-group">
                                 <label class="control-label label" for="description">Description: </label>
                                 <div class="controls">
-                                    <input value="{{$post->description}}" type="text" name="description" id="description" placeholder="Enter description, Ex: Stadion Gelora Bandung Lautan Api" class="span10" required>
+                                    <input value="{{$post->schedule_stadion}}" type="text" name="description" id="description" placeholder="Enter description, Ex: Stadion Gelora Bandung Lautan Api" class="span10" required>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label label" for="date">Date: </label>
                                 <div class="controls">
-                                    <input value="{{$post->date}}" type="text" name="date" id="" placeholder="Enter date and time" class="datetime span10" required>
+                                    <input value="{{$post->schedule_date_match}}" type="text" name="date" id="" placeholder="Enter date and time" class="datetime span10" required>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label label" for="date">Tanggal Pemesanan: </label>
                                 <div class="controls">
-                                    <input value="{{$post->start_date}}" type="text" name="start_date" id="" placeholder="Enter date and time" class="datetime span10" required>
+                                    <input value="{{$post->schedule_start_date}}" type="text" name="start_date" id="" placeholder="Enter date and time" class="datetime span10" required>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -49,8 +49,8 @@
                                     <label class="control-label label span5">Edit Logo Rival</label>
                                     </div>
                                     <div class="row">
-                                    <img src="{{asset('images/'. $post->image1)}}" height="200" width="200"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                    <img src="{{asset('images1/'. $post->image2)}}" height="200" width="200"></div>
+                                    <img src="{{asset('images/'. $post->schedule_home_image)}}" height="200" width="200"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                    <img src="{{asset('images1/'. $post->schedule_away_image)}}" height="200" width="200"></div>
                                     <input type="file" name="image1" class="span5">&nbsp; &nbsp; &nbsp;
                                     <input type="file" name="image2" class="span5">
                                 </div>  

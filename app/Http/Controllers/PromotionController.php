@@ -9,7 +9,8 @@ use App\Jobs\SendPromotionJob;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Http\Requests;
-use App\Models\Promotion;
+use App\Models\Schedule;
+use App\Models\Ticket;
 use App\Models\Customer;
 use App\Classes\Kissproof;
 use View;
@@ -21,7 +22,7 @@ use Storage;
 
 class PromotionController extends Controller
 {
-    public function __construct(Promotion $promotion, Customer $customer)
+    public function __construct(Schedule $promotion, Customer $customer)
     {
         $this->model = $promotion;
         $this->customer = $customer;
@@ -34,7 +35,7 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        $posts = Promotion::all();
+        $posts = Schedule::all();
         return View::make('backend.promotion.index')->withPosts($posts);
     }
 
@@ -99,12 +100,12 @@ class PromotionController extends Controller
 
         // }
 
-        $post = New Promotion;
+        $post = New Schedule;
 
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->date = $request->date;
-        $post->start_date = $request->start_date;
+        $post->schedule_match = $request->title;
+        $post->schedule_stadion = $request->description;
+        $post->schedule_date_match = $request->date;
+        $post->schedule_start_date = $request->start_date;
 
         if ($request->hasFile('image1')) {
             $image1 = $request->file('image1');
@@ -112,7 +113,7 @@ class PromotionController extends Controller
             $location = public_path('images/' . $filename);
             Image::make($image1)->resize(800, 400)->save($location);
 
-            $post->image1 = $filename;
+            $post->schedule_home_image = $filename;
         }
         if ($request->hasFile('image2')) {
             $image2 = $request->file('image2');
@@ -120,7 +121,7 @@ class PromotionController extends Controller
             $location1 = public_path('images1/' . $filename1);
             Image::make($image2)->resize(800, 400)->save($location1);
 
-            $post->image2 = $filename1;
+            $post->schedule_away_image = $filename1;
         }
 
         $post->save();
@@ -151,11 +152,11 @@ class PromotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     $posts = Promotion::find($id);
-    //     return view('backend.promotion.show')->withPosts($posts);
-    // }
+    public function show($id)
+    {
+        $posts = Schedule::with('tickets')->find($id);
+        return view('backend.promotion.detail')->withPost($posts);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -166,7 +167,7 @@ class PromotionController extends Controller
     public function edit($id)
     {
        
-         $post = Promotion::find($id);
+         $post = Schedule::find($id);
          return view('backend.promotion.edit')->withPost($post);
     }
 
@@ -179,20 +180,20 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Promotion::find($id);
-        $post->title = $request->input('title');
-        $post->description = $request->input('description');
-        $post->date = $request->input('date');
-        $post->start_date = $request->start_date;
+        $post = Schedule::find($id);
+        $post->schedule_match = $request->input('title');
+        $post->schedule_stadion = $request->input('description');
+        $post->schedule_date_match = $request->input('date');
+        $post->schedule_start_date = $request->start_date;
         if ($request->hasFile('image1')) {
             // add the new image
             $image = $request->file('image1');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(800, 400)->save($location);
-            $oldfilename = $post->image1;
+            $oldfilename = $post->schedule_home_image;
             // update the data base
-            $post->image1 = $filename;
+            $post->schedule_home_image = $filename;
             // delete the old image
             Storage::delete($oldfilename);
 
@@ -202,9 +203,9 @@ class PromotionController extends Controller
             $filename1 = time() . '.' . $image1->getClientOriginalExtension();
             $location1 = public_path('images1/' . $filename1);
             Image::make($image1)->resize(800, 400)->save($location1);
-            $oldfilename1 = $post->image2;
+            $oldfilename1 = $post->schedule_away_image;
             // update the data base
-            $post->image2 = $filename1;
+            $post->schedule_away_image = $filename1;
             // delete the old image
             Storage::delete($oldfilename1);
         }
@@ -251,5 +252,17 @@ class PromotionController extends Controller
             session()->flash('flash_message_error', 'Delete shedule information failed');
             return Redirect::back();
         }
+    }
+
+    public function storeTicket(Request $request)
+    {
+        $ticket = new Ticket;
+        $ticket->schedule_id = $request->id;
+        $ticket->ticket_name = $request->name;
+        $ticket->ticket_price = $request->price;
+        $ticket->ticket_stock = $request->stock;
+        $ticket->save();
+        session()->flash('flash_message','Success save data');
+        return redirect()->route('admin.promotion.admin.detail', $request->id);
     }
 }

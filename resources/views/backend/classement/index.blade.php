@@ -27,10 +27,10 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <img src="{{asset('images/'. $post->image)}}">
+                                    <img src="{{asset('images/'. $post->classement_image)}}">
                                 </th>
                                 <th>
-                                    <img src="{{asset('images1/'. $post->topscore)}}">
+                                    <img src="{{asset('images1/'. $post->topscore_image)}}">
                                 </th>
                             </tr>
                         </thead>

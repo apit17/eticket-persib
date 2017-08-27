@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     protected $table = 'customers';
-    protected $fillable = ['name','noid','phone','email','city','address'];
+    protected $fillable = ['customers_name','customer_ktp','customer_handphone','customer_email','customer_city','customer_address'];
     /**
      * [insertNewCustomer]
      * @return [type] [array]
      */
     public function insertNewCustomer($data)
     {
-        // $check = $this->where('email','=',$data['email'])->first();
+        // $check = $this->where('customer_email','=',$data['customer_email'])->first();
 
         // if (count($check) > 0) {
         //     $check->name = $data['name'];
-        //     $check->phone = $data['phone'];
-        //     $check->city = $data['city'];
+        //     $check->customer_handphone = $data['customer_handphone'];
+        //     $check->customer_city = $data['customer_city'];
 
         //     if ($check->save()) {
         //         return $check->id;
@@ -27,11 +27,12 @@ class Customer extends Model
         //         return false;
         //     }
         // } else {
-            $this->name = $data['name'];
-            $this->noid= $data['noid'];
-            $this->phone = $data['phone'];
-            $this->email = $data['email'];
-            $this->city = $data['city'];
+            $this->customer_name = $data['name'];
+            $this->customer_ktp= $data['ktp'];
+            $this->customer_handphone = $data['phone'];
+            $this->customer_email = $data['email'];
+            $this->customer_city = $data['city'];
+            $this->customer_address = $data['address'];
 
             if ($this->save()) {
                 return $this->id;
@@ -49,7 +50,7 @@ class Customer extends Model
      **/
     public function getUserData($id)
     {
-        $userData = $this->select('customers.noid','customers.phone','customers.email', $id)->get();
+        $userData = $this->select('customers.customer_ktp','customers.customer_phone','customers.customer_email', $id)->get();
         return $userData;
     }
 

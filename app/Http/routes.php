@@ -73,6 +73,8 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/',['uses' => 'PromotionController@index']);
             Route::get('/datatables',['uses' => 'PromotionController@datatables']);
             Route::get('/create',['uses' => 'PromotionController@create']);
+            Route::get('/detail/{id}',['uses' => 'PromotionController@show','as' => 'admin.promotion.admin.detail']);
+            Route::post('/add-ticket', ['uses' => 'PromotionController@storeTicket', 'as' => 'admin.promotion.admin.add-ticket']);
             Route::post('/add', ['uses' => 'PromotionController@store']);
             Route::post('/delete', ['uses' => 'PromotionController@destroy']);
             Route::resource('admin', 'PromotionController', ['only' => ['edit', 'update']]);

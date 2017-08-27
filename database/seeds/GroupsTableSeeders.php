@@ -11,6 +11,7 @@ class GroupsTableSeeders extends Seeder
      */
     public function run()
     {
+        \DB::table('groups')->truncate();
         $group = Sentry::createGroup(array(
             'name'        => 'Admin',
             'permissions' => array(

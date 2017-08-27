@@ -61,7 +61,7 @@ class ClassementController extends Controller
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(800, 400)->save($location);
 
-            $post->image = $filename;
+            $post->classement_image = $filename;
         }
 
         if ($request->hasFile('topscore')) {
@@ -70,7 +70,7 @@ class ClassementController extends Controller
             $location1 = public_path('images1/' . $filename1);
             Image::make($image1)->resize(800, 400)->save($location1);
 
-            $post->topscore = $filename1;
+            $post->topscore_image = $filename1;
         }
 
         $post->save();
@@ -124,9 +124,9 @@ class ClassementController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
             Image::make($image)->resize(800, 400)->save($location);
-            $oldfilename = $post->image;
+            $oldfilename = $post->classement_image;
             // update the data base
-            $post->image = $filename;
+            $post->classement_image = $filename;
             // delete the old image
             Storage::delete($oldfilename);
 
@@ -136,9 +136,9 @@ class ClassementController extends Controller
             $filename1 = time() . '.' . $image1->getClientOriginalExtension();
             $location1 = public_path('images1/' . $filename1);
             Image::make($image1)->resize(800, 400)->save($location1);
-            $oldfilename1 = $post->topscore;
+            $oldfilename1 = $post->topscore_image;
             // update the data base
-            $post->topscore = $filename1;
+            $post->topscore_image = $filename1;
             // delete the old image
             Storage::delete($oldfilename1);
         }

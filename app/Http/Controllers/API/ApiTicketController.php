@@ -182,10 +182,25 @@ class ApiTicketController extends Controller
 
 	public function customerSignUp(Request $req)
     {
+        $rules = [
+            'email' => 'required|unique:customers,customer_email',
+            'name' => 'required',
+            'ktp' => 'required|unique:customers,customer_ktp|min:16|max:16',
+            'phone' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ];
+
+        $validation = Validator::make($req->all(), $rules);
         try {
-        	$data = $this->mappingInsert($req->toArray());
-            $userData = (new User)->createUser($data);
-            return response()->json(['data'=>['message'=>'Success', 'user'=>$userData]]);
+            if ($validation->fails()) {
+                return response()->json(['data'=>['message' => $validation->errors()->first()]], 400);
+            } else {
+                $id = (new Customer)->insertNewCustomer($req->all());
+                // $data = $this->mappingInsert($req->toArray());
+             //    $userData = (new User)->createUser($data);
+                return response()->json(['data'=>['message'=>'Success', 'user'=>Customer::find($id)]]);
+            }
         } catch (\Exception $e) {
             \Log::error(['message'=>$e->getMessage(), 'line'=>$e->getLine(), 'file'=>$e->getFile()]);
             return response()->json(['data'=>'Error']);

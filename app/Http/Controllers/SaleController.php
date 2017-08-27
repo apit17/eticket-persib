@@ -9,6 +9,7 @@ use App\Classes\Kissproof;
 use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\Customer;
 use View;
 use PDF;
@@ -19,13 +20,10 @@ use Mail;
 
 class SaleController extends Controller
 {
-    public function __construct(Sale $sale, SaleDetail $detail, Product $product, Customer $customer)
+    public function __construct(Customer $customer, Transaction $transaction)
     {
-        $this->sale = $sale;
-        $this->detail = $detail;
-        $this->product = $product;
         $this->customer = $customer;
-        
+        $this->transaction = $transaction;
     }
 
     /**
@@ -44,26 +42,25 @@ class SaleController extends Controller
      */
     public function datatables()
     {
-        $results = $this->sale->getAllSales();
-        return Datatables::of($results)
-            ->editColumn('date', function ($results) {
-                return date('d M Y',strtotime($results->date));
+        return Datatables::of($this->transaction->all())
+            ->editColumn('created_at', function ($results) {
+                return date('d M Y',strtotime($results->created_at));
             })
-            ->editColumn('customer', function ($results) {
-                return ucwords($results->customer);
+            ->editColumn('customer_id', function ($results) {
+                return ucwords(strtolower($results->customer->customer_name));
             })
-            ->editColumn('no_resi', function ($results) {
-                if (!empty($results->no_resi)) {
-                    return strtoupper($results->no_resi);
+            ->editColumn('transaction_resi_number', function ($results) {
+                if (!empty($results->transaction_resi_number)) {
+                    return strtoupper($results->transaction_resi_number);
                 } else {
                     return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalResi" class="btn btn-small btn-primary addResi" title="Input Resi Number"><i class="menu-icon icon-pencil"></i> </a>';
                 }
             })
-            ->editColumn('total', function ($results) {
-                return Kissproof::priceFormater($results->total);
+            ->editColumn('transaction_price', function ($results) {
+                return Kissproof::priceFormater($results->transaction_price);
             })
-            ->editColumn('status', function($results) {
-                switch ($results->status) {
+            ->editColumn('transaction_resi_status', function($results) {
+                switch ($results->transaction_resi_status) {
                     case '0':
                         $res = 'Belum Dibayar';
                         break;
@@ -85,6 +82,9 @@ class SaleController extends Controller
                 }
 
                 return $res;
+            })
+            ->addColumn('address', function($q){
+                return $results->customer->customer_address;
             })
             ->addColumn('action', function ($results) {
                 return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalDetail" class="btn btn-small btn-info detail" title="View Detail Transaction"><i class="menu-icon icon-table"></i> </a> <a href="/admin/sale/print?id='.$results->id.'" class="btn btn-small btn-danger print" title="Print Invoice"><i class="menu-icon icon-file"></i> </a>';

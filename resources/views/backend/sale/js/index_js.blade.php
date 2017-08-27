@@ -14,13 +14,13 @@ $(document).ready(function() {
         },
         columns: [
             { data: null, name: null, orderable: false},
-            { data: 'date', name: 'date', orderable: true, searchable: true},
-            { data: 'code', name: 'code', orderable: true, searchable: true},
-            { data: 'customer', name: 'customer', orderable: true, searchable: true },
-            { data: 'total', name: 'total', orderable: true, searchable: true },
+            { data: 'created_at', name: 'date', orderable: true, searchable: true},
+            { data: 'transaction_code', name: 'code', orderable: true, searchable: true},
+            { data: 'customer_id', name: 'customer', orderable: true, searchable: true },
+            { data: 'transaction_price', name: 'total', orderable: true, searchable: true },
             { data: 'address', name: 'address', orderable: true, searchable: true },
-            { data: 'no_resi', name: 'no_resi', orderable: true, searchable: true },
-            { data: 'status', name: 'status', orderable: true, searchable: true },
+            { data: 'transaction_resi_number', name: 'no_resi', orderable: true, searchable: true },
+            { data: 'transaction_resi_status', name: 'status', orderable: true, searchable: true },
             { data: 'action', name: 'action', orderable: false, searchable: false }
         ]
     });
