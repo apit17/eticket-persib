@@ -63,7 +63,7 @@ class CreateNewTableForEticket extends Migration
             $table->double('transaction_price',8,2);
             $table->string('transaction_resi_number', 7);
             $table->integer('transaction_resi_status')->default(0);
-            $table->string('transaction_proof_image');
+            $table->string('transaction_proof_image')->nullable();
             $table->timestamps();
         });
     }

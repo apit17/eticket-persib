@@ -33,6 +33,7 @@ class Customer extends Model
             $this->customer_email = $data['email'];
             $this->customer_city = $data['city'];
             $this->customer_address = $data['address'];
+            $this->customer_password = \Hash::make($data['password']);
 
             if ($this->save()) {
                 return $this->id;
@@ -62,4 +63,18 @@ class Customer extends Model
     {
         return $this->all();
     }
+
+    public function checkingLogin($email, $password)
+    {
+        $result = false;
+        $data = $this->whereCustomerEmail($email)->first();
+        if (!is_null($data)) {
+            if (\Hash::check($password, $data->customer_password)) {
+                $result=true;
+            }
+        }
+
+        return $result;
+    }
+
 }

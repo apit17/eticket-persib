@@ -8,7 +8,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\Transaction;
+use App\Models\Schedule;
+use App\Models\Ticket;
 use App\Models\SaleDetail;
+use App\Classes\Kissproof;
 use App\Models\Customer;
 use App\Models\Promotion;
 use App\Models\User;
@@ -73,7 +77,7 @@ class ApiTicketController extends Controller
 
 			$validation = Validator::make($data, $rules);
 
-			If($validation->fails()) {
+			if($validation->fails()) {
 			return Response::json(['message'=>'Ada yg belum di isi']);
 			} else {
 			// Kodingan nu ayeuna 
@@ -110,9 +114,34 @@ class ApiTicketController extends Controller
 	 **/
 	public function getSchedule()
 	{
-		$schedule = Promotion::latest()->get();
+		$schedule = Schedule::where('schedule_date_match', '>=', date("Y-m-d"))->latest()->get();
 		return Response::json(['data'=> $schedule], 200);
 	}
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function getDetailSchedule(Request $req)
+    {
+        $data = $req->all();
+        if (isset($data['id'])) {
+            $data = Schedule::find($data['id']);
+            if (!is_null($data)) {
+                if (count($data->tickets) != 0) {
+                    return response()->json(['data'=>['message'=>'Berhasil Ambil Data', 'schedule_detail'=>$data]], 200);
+                } else {
+                    return response()->json(['data'=>['message'=>'belum ada data detail', 'schedule_detail' => $data]], 200);
+                }
+            } else {
+                return response()->json(['data'=>['message'=>'tidak ada data']], 400);
+            }
+        } else {
+            return response()->json(['data'=>['message'=>'tidak ada data']], 400);
+        }
+    }
 
 	/**
 	 * undocumented function
@@ -123,7 +152,7 @@ class ApiTicketController extends Controller
 	public function getClassement()
 	{
 		$classement = Classement::all();
-		return Response::json(['data'=>['message'=>'Success', 'all'=>$classement], 200]);
+		return Response::json(['data'=>['message'=>'Success', 'all'=>$classement]], 200);
 	}
 
 	/**
@@ -134,30 +163,40 @@ class ApiTicketController extends Controller
 	 **/
 	public function insertImageTransaction(Request $request)
 	{
-		$sales = new Sale;
-		$salesSave = $sales->find($request->id);
-		$salesSave->status = 1;
-		// \Log::debug([$request->file('image')]);
-		// return Response::json(['data'=> $request->file('image')], 200);
-		// if ($request->hasFile('image')) {
-  //           $image = $request->file('image');
-            // $filename = time() . '.' . $image->getClientOriginalExtension();
-            // $location = public_path('images/' . $filename);
-  //           \Image::make($image)->resize(800, 400)->save($location);
+        $validation = Validator::make($request->all(),['id'=>'required','image'=>'required']);
+        if ($validation->fails()) {
+            return response()->json(['data'=>['message' => $validation->errors()->first()]]);
+        } else {
+    		// $sales = new Sale;
+    		$salesSave = Transaction::find($request->id);
+            if (!is_null($salesSave)) {
+        		$salesSave->transaction_resi_status = 1;
+        		// \Log::debug([$request->file('image')]);
+        		// return Response::json(['data'=> $request->file('image')], 200);
+        		// if ($request->hasFile('image')) {
+          //           $image = $request->file('image');
+                    // $filename = time() . '.' . $image->getClientOriginalExtension();
+                    // $location = public_path('images/' . $filename);
+          //           \Image::make($image)->resize(800, 400)->save($location);
 
-  //           $salesSave->image = $filename;
+          //           $salesSave->image = $filename;
 
-  //       }
-		if (!empty($request->get('image'))) {
-			\Log::info($request->all());
-			$baseImage = base64_decode($request->get('image'));
-			$filename = date("Y-m-d") . ".jpg";
-            $location = public_path('images/' . $filename);
-            \Image::make($baseImage)->save($location);
-    	    $salesSave->image = $filename;
-		}
-        $salesSave->save();
-        return Response::json(['data'=> "Sukses"], 200);
+          //       }
+        		if (!empty($request->get('image'))) {
+        			\Log::info($request->all());
+        			$baseImage = base64_decode($request->get('image'));
+        			$filename = date("Y-m-d") . ".jpg";
+                    $location = public_path('images/' . $filename);
+                    \Image::make($baseImage)->save($location);
+            	    $salesSave->transaction_proof_image = $filename;
+        		}
+                $salesSave->save();
+                return Response::json(['data'=> "Sukses"], 200);
+            } else {
+                return Response::json(['data'=> "Gagal"], 400);
+            }
+            
+        }
 	}
 
 	/**
@@ -168,7 +207,7 @@ class ApiTicketController extends Controller
 	 **/
 	public function getTransaction(Request $request)
 	{
-		$transaction = Sale::whereCustomerId($request->get('user_id'))->with('promotion')->latest()->get();
+		$transaction = Transaction::whereCustomerId($request->get('user_id'))->with('ticket')->latest()->get();
 		return Response::json(['data'=> $transaction], 200);
 	}
 
@@ -187,6 +226,7 @@ class ApiTicketController extends Controller
             'name' => 'required',
             'ktp' => 'required|unique:customers,customer_ktp|min:16|max:16',
             'phone' => 'required',
+            'password' => 'required|min:6',
             'city' => 'required',
             'address' => 'required',
         ];
@@ -208,20 +248,47 @@ class ApiTicketController extends Controller
     }
 
     public function customerLogin(Request $req) {
-    	            \Log::info($req->toArray());
-
+        \Log::info($req->toArray());
     	try {
-            $user = new User;
-            $status = $user->getStatusLogin($req->email,$req->password);
+            $user = new Customer;
+            $status = $user->checkingLogin($req->email,$req->password);
 
             \Log::info(["HASIIL.       "=>$status]);
             if($status)
-            	return response()->json(['data'=>['message'=>'Success', 'user'=>$status], 200]);
+            	return response()->json(['data'=>['message'=>'Success', 'user'=>$status, 'user_data' => $user->whereCustomerEmail($req->email)->first()]], 200);
             else
-            	return response()->json(['data'=>'User salah']);
+            	return response()->json(['data'=>'User salah'], 400);
         } catch (\Exception $e) {
             \Log::error(['message'=>$e->getMessage(), 'line'=>$e->getLine(), 'file'=>$e->getFile()]);
             return response()->json(['data'=>'Error']);
+        }
+    }
+
+    public function bookingSchedule(Request $req)
+    {
+        $data = $req->all();
+        $validation = Validator::make($data, ['user_id'=>'required','ticket_id'=>'required']);
+        if ($validation->fails()) {
+            return response()->json(['data'=>['message' => $validation->errors()->first()]]);
+        } else {
+            $customer = Customer::find($data['user_id']);
+            $ticket = Ticket::find($data['ticket_id']);
+            if (!is_null($customer) && !is_null($ticket)) {
+                if (Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->count() != 0) {
+                    return response()->json(['data' => ['message' => 'Anda telah memsan tiket ini']]);
+                } else {
+                    $transaction = new Transaction;
+                    $transaction->customer_id = $data['user_id'];
+                    $transaction->ticket_id = $data['ticket_id'];
+                    $transaction->transaction_code = Kissproof::generateRandomCode();
+                    $transaction->transaction_date = date("Y-m-d H:i:s");
+                    $transaction->transaction_price = $ticket->ticket_price+5000;
+                    $transaction->save();
+                    return response()->json(['data' => ['message' => 'Berhasil Book Ticket, Segara lakukan pembayaran karena kami tidak akan mengkeep ticket yang anda book sebelum dibayar']]);
+                }
+            } else {
+                return response()->json(['data' => ['message' => 'data tidak ditemukan']], 400);
+            }
         }
     }
 }

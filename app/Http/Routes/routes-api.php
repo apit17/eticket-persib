@@ -19,6 +19,8 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('ticket', 'ApiTicketController@getTicket');
     Route::post('ticket/book', 'ApiTicketController@bookingTicket');
     Route::get('schedule', 'ApiTicketController@getSchedule');
+    Route::get('schedule-detail', 'ApiTicketController@getDetailSchedule');
+    Route::post('schedule-book', 'ApiTicketController@bookingSchedule');
     Route::post('user/signup', 'ApiTicketController@customerSignUp');
     Route::post('customer/login', 'ApiTicketController@customerLogin');
     Route::get('user', 'ApiTicketController@getUserData');

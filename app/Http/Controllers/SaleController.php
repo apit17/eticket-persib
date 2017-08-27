@@ -50,7 +50,9 @@ class SaleController extends Controller
                 return ucwords(strtolower($results->customer->customer_name));
             })
             ->editColumn('transaction_resi_number', function ($results) {
-                if (!empty($results->transaction_resi_number)) {
+                if (empty($results->transaction_proof_image)) {
+                    return 'Belum Upload Image';
+                } elseif (!empty($results->transaction_resi_number)) {
                     return strtoupper($results->transaction_resi_number);
                 } else {
                     return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalResi" class="btn btn-small btn-primary addResi" title="Input Resi Number"><i class="menu-icon icon-pencil"></i> </a>';
@@ -84,10 +86,14 @@ class SaleController extends Controller
                 return $res;
             })
             ->addColumn('address', function($q){
-                return $results->customer->customer_address;
+                return $q->customer->customer_address;
             })
             ->addColumn('action', function ($results) {
-                return '<a data-id="'.$results->id.'" data-toggle="modal" data-target="#myModalDetail" class="btn btn-small btn-info detail" title="View Detail Transaction"><i class="menu-icon icon-table"></i> </a> <a href="/admin/sale/print?id='.$results->id.'" class="btn btn-small btn-danger print" title="Print Invoice"><i class="menu-icon icon-file"></i> </a>';
+                $html= '<a data-id="'.$results->id.'" class="btn btn-small btn-info detail" title="View Detail Transaction"><i class="menu-icon icon-table"></i> </a>';
+                if ($results->transaction_resi_status == 2) {
+                    $html .= '<a href="/admin/sale/print?id='.$results->id.'" class="btn btn-small btn-danger print" title="Print Invoice"><i class="menu-icon icon-file"></i> </a>';
+                }
+                return $html;
             })
         ->make(true);
     }
@@ -135,30 +141,26 @@ class SaleController extends Controller
     public function show(Request $request)
     {
         $post = $request->all();
-        $getDetail = $this->sale->getDetailSale($post['id']);
+        $getDetail = Transaction::find($request->id);
         $header = '<table class="table table-striped table-bordered table-condensed">
             <tr>
                 <th>Category Ticket</th>
                 <th>Price</th>
-                <th>Quantity</th>
             </tr>';
-
-        $body = '';
-        foreach ($getDetail as $i => $val) {
-            $body .= '<tr><td>'.ucwords($val->name.' - '.$val->color).'</td><td>'.Kissproof::priceFormater($val->price).'</td><td>'.$val->qty.'</td></tr>';
-        }
+        $ticketDetail = $getDetail->ticket;
+        $body = '<tr><td>' . $ticketDetail->ticket_name . '</td><td>Rp. ' . number_format($getDetail->transaction_price) . '</td></tr>';
 
         $footer = '</table>';
-        $record = $this->sale->find($post['id']);
+        // $record = $this->sale->find($post['id']);
 
-        if ($record->image != null) {
-            $footer .= '<br><center><h2>Bukti Pembayaran</h2><img src="' . asset('images') . '/'. $record->image . '" width="50%"></center>';
+        if (!empty($getDetail->transaction_proof_image)) {
+            $footer .= '<br><center><h2>Bukti Pembayaran</h2><img src="' . asset('images') . '/'. $getDetail->transaction_proof_image . '" width="50%"></center>';
         }
 
         $table = $header.$body.$footer;
 
         $sent = (object) array(
-            'order' => $getDetail[0]->code,
+            'order' => $getDetail->transaction_code,
             'table' => $table
         );
 
@@ -191,18 +193,18 @@ class SaleController extends Controller
     public function addResiNumber(Request $request)
     {
         $post = $request->all();
-        $sale = $this->sale->find($post['saleID']);
-        $sale->no_resi = $post['no_resi'];
-        $sale->status = 2;
+        $sale = Transaction::find($post['saleID']);
+        $sale->transaction_resi_number = $post['no_resi'];
+        $sale->transaction_resi_status = 2;
         $sale->save();
 
         if (!empty($post['is_send_email'])) {
             $customer = $this->customer->find($sale->customer_id);
             // dd($customer);
             $insert = array (
-                'email' => $customer->email,
-                'name'  => $customer->name,
-                'resi'  => strtoupper($sale->no_resi)
+                'email' => $customer->customer_email,
+                'name'  => $customer->customer_name,
+                'resi'  => strtoupper($sale->transaction_resi_number)
             );
             Mail::send('email.sendResiNumber', $insert, function ($message) use ($insert) {
                 $message->subject("E-Ticket Persib - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");

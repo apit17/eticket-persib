@@ -29,26 +29,4 @@ class User extends Model
     	});
     	return $status;
     }
-    /**
-     * undocumented function
-     *
-     * @return void
-     * @author 
-     **/
-    public function scopeGetLogin($query,$email,$password)
-    {
-    	return $query->where('email',$email)->where('password',$password)->with('customer');
-    }
-
-    /**
-     * undocumented function
-     *
-     * @return void
-     * @author 
-     **/
-    public function getStatusLogin($email,$password)
-    {
-    	$result = $this->GetLogin($email, $password)->first();
-    	return $result;
-    }
 }

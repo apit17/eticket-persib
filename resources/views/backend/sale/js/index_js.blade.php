@@ -29,7 +29,7 @@ $(document).ready(function() {
     $(document).on('click','.detail',function() {
         var id = $(this).data('id');
         $.ajax({
-            'type':'post',
+            'type':'get',
             'url':"{{URL::to('/admin/sale/detail')}}",
             'data':{
                 'id': id,
@@ -38,6 +38,7 @@ $(document).ready(function() {
                 var obj = jQuery.parseJSON(data);
                 $('#myModalDetail .modal-title').text('Detail Order ID#'+obj.order);
                 $('#myModalDetail .modal-body').html(obj.table);
+                $('#myModalDetail').modal('show');
             }
         });
     });

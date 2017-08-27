@@ -8,6 +8,11 @@ class Transaction extends Model
 {
     public function customer()
     {
-        return hasOne('\App\Models\Customer');
+        return $this->belongsTo('\App\Models\Customer');
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo('\App\Models\Ticket');
     }
 }

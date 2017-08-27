@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/datatables',['uses' => 'SaleController@datatables']);
             Route::get('/create',['uses' => 'SaleController@create']);
             Route::post('/store',['uses' => 'SaleController@store']);
-            Route::post('/detail',['uses' => 'SaleController@show']);
+            Route::get('/detail',['uses' => 'SaleController@show']);
             Route::get('/print',['uses' => 'SaleController@printInvoice']);
             Route::post('/resi',['uses' => 'SaleController@addResiNumber']);
         });
