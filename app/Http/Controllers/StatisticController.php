@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Classes\Kissproof;
 use App\Models\Sale;
 use App\Models\Procurement;
+use App\Models\Transaction;
 use View;
 use Sentry;
 use Redirect;
@@ -42,11 +43,23 @@ class StatisticController extends Controller
         $start = @$post['first_date'] ? date('Y-m-d',strtotime($post['first_date'])) : "";
         $end = @$post['end_date'] ? date('Y-m-d',strtotime($post['end_date'])) : "";
 
-        $income = $this->income->getSaleDataByPeriode($start, $end);
+        // $income = $this->income->getSaleDataByPeriode($start, $end);
+        $income = Transaction::selectRaw('transaction_date, sum(transaction_price) as price');
+
+        if (!empty($start) && !empty($end)) {
+            $income = $income->whereBetween('transaction_date', array($start.' 00:00:00', $end.' 23:59:59'));
+        } else {
+            $income = $income->whereMonth('transaction_date', '=',date("m"));
+        }
+
+        $income = $income->groupBy('transaction_date')
+                ->lists('price', 'transaction_date');
+        
 
         if ($post['type'] == 'graphic') {
 
-            $date = array(); $total = array();
+            $date = array(); 
+            $total = array();
             foreach ($income as $key => $value) {
                 $date[] = Kissproof::dateIndo($key);
                 $total[] = $value;

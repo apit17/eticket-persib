@@ -274,16 +274,17 @@ class ApiTicketController extends Controller
             $customer = Customer::find($data['user_id']);
             $ticket = Ticket::find($data['ticket_id']);
             if (!is_null($customer) && !is_null($ticket)) {
-                if ($ticket->schedule->schedule_start_date < date("Y-m-d")) {
+                if (date("Y-m-d") < date("Y-m-d", strtotime($ticket->schedule->schedule_start_date))) {
                     return response()->json(['data' => ['message' => 'Tiket Belum Tersedia']]);
                 } else {
-                    $transactionExist = Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->first();
-                    if (!is_null($transactionExist) && Ticket::find($data['ticket_id'])->schedule_id == $transactionExist->ticket->schedule_id) {
+                    $transactionExist = Transaction::whereCustomerId($data['user_id'])->whereScheduleId($ticket->schedule_id)->first();
+                    if (!is_null($transactionExist)) {
                         return response()->json(['data' => ['message' => 'Anda telah memesan tiket Pertandingan ini']]);
                     } else {
                         $transaction = new Transaction;
                         $transaction->customer_id = $data['user_id'];
                         $transaction->ticket_id = $data['ticket_id'];
+                        $transaction->schedule_id = $ticket->schedule_id;
                         $transaction->transaction_code = Kissproof::generateRandomCode();
                         $transaction->transaction_date = date("Y-m-d H:i:s");
                         $transaction->transaction_price = $ticket->ticket_price+5000;
