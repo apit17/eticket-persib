@@ -274,18 +274,22 @@ class ApiTicketController extends Controller
             $customer = Customer::find($data['user_id']);
             $ticket = Ticket::find($data['ticket_id']);
             if (!is_null($customer) && !is_null($ticket)) {
-                $transactionExist = Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->first();
-                if (!is_null($transactionExist) && Ticket::find($data['ticket_id'])->schedule_id == $transactionExist->ticket->schedule_id) {
-                    return response()->json(['data' => ['message' => 'Anda telah memesan tiket Pertandingan ini']]);
+                if ($ticket->schedule->schedule_start_date < date("Y-m-d")) {
+                    return response()->json(['data' => ['message' => 'Tiket Belum Tersedia']]);
                 } else {
-                    $transaction = new Transaction;
-                    $transaction->customer_id = $data['user_id'];
-                    $transaction->ticket_id = $data['ticket_id'];
-                    $transaction->transaction_code = Kissproof::generateRandomCode();
-                    $transaction->transaction_date = date("Y-m-d H:i:s");
-                    $transaction->transaction_price = $ticket->ticket_price+5000;
-                    $transaction->save();
-                    return response()->json(['data' => ['message' => 'Berhasil Book Ticket, Segara lakukan pembayaran karena kami tidak akan mengkeep ticket yang anda book sebelum dibayar']]);
+                    $transactionExist = Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->first();
+                    if (!is_null($transactionExist) && Ticket::find($data['ticket_id'])->schedule_id == $transactionExist->ticket->schedule_id) {
+                        return response()->json(['data' => ['message' => 'Anda telah memesan tiket Pertandingan ini']]);
+                    } else {
+                        $transaction = new Transaction;
+                        $transaction->customer_id = $data['user_id'];
+                        $transaction->ticket_id = $data['ticket_id'];
+                        $transaction->transaction_code = Kissproof::generateRandomCode();
+                        $transaction->transaction_date = date("Y-m-d H:i:s");
+                        $transaction->transaction_price = $ticket->ticket_price+5000;
+                        $transaction->save();
+                        return response()->json(['data' => ['message' => 'Berhasil Book Ticket, Segara lakukan pembayaran karena kami tidak akan mengkeep ticket yang anda book sebelum dibayar']]);
+                    }
                 }
             } else {
                 return response()->json(['data' => ['message' => 'data tidak ditemukan']], 400);
