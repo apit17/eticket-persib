@@ -177,11 +177,12 @@ class SaleController extends Controller
     public function printInvoice(Request $request)
     {
         $id = $request->get('id');
-        $data = $this->sale->getDataInvoice($id);
-        $date = Kissproof::dateIndo($data[0]->date);
+        // $data = $this->sale->getDataInvoice($id);
+        $data = Transaction::find($id);
+        $date = Kissproof::dateIndo($data->transaction_date);
         $pdf = PDF::loadView('backend.sale.print', array("data" => $data, "date" => $date))->setPaper('A4')->setOrientation('portrait');
 
-        return $pdf->download('Invoice#'.$data[0]->code.'.pdf');
+        return $pdf->download('Invoice#'.$data->transaction_code.'.pdf');
     }
 
     /**
@@ -197,6 +198,10 @@ class SaleController extends Controller
         $sale->transaction_resi_number = $post['no_resi'];
         $sale->transaction_resi_status = 2;
         $sale->save();
+
+        $ticket = Ticket::find($sale->ticket_id);
+        $ticket->ticket_stock = $ticket->ticket_stock - 1;
+        $ticket->save();
 
         if (!empty($post['is_send_email'])) {
             $customer = $this->customer->find($sale->customer_id);
