@@ -274,8 +274,9 @@ class ApiTicketController extends Controller
             $customer = Customer::find($data['user_id']);
             $ticket = Ticket::find($data['ticket_id']);
             if (!is_null($customer) && !is_null($ticket)) {
-                if (Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->count() != 0) {
-                    return response()->json(['data' => ['message' => 'Anda telah memsan tiket ini']]);
+                $transactionExist = Transaction::whereCustomerId($data['user_id'])->whereTicketId($data['ticket_id'])->first();
+                if (!is_null($transactionExist) && Ticket::find($data['ticket_id'])->schedule_id == $transactionExist->ticket->schedule_id) {
+                    return response()->json(['data' => ['message' => 'Anda telah memesan tiket Pertandingan ini']]);
                 } else {
                     $transaction = new Transaction;
                     $transaction->customer_id = $data['user_id'];
