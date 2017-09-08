@@ -111,7 +111,7 @@ class PromotionController extends Controller
             $image1 = $request->file('image1');
             $filename = time() . '.' . $image1->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image1)->resize(800, 400)->save($location);
+            Image::make($image1)->fit(52, 57)->save($location);
 
             $post->schedule_home_image = $filename;
         }
@@ -119,7 +119,7 @@ class PromotionController extends Controller
             $image2 = $request->file('image2');
             $filename1 = time() . '.' . $image2->getClientOriginalExtension();
             $location1 = public_path('images1/' . $filename1);
-            Image::make($image2)->resize(800, 400)->save($location1);
+            Image::make($image2)->fit(57, 57)->save($location1);
 
             $post->schedule_away_image = $filename1;
         }
@@ -190,7 +190,7 @@ class PromotionController extends Controller
             $image = $request->file('image1');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('images/' . $filename);
-            Image::make($image)->resize(800, 400)->save($location);
+            Image::make($image)->fit(52, 57)->save($location);
             $oldfilename = $post->schedule_home_image;
             // update the data base
             $post->schedule_home_image = $filename;
@@ -202,7 +202,7 @@ class PromotionController extends Controller
             $image1 = $request->file('image2');
             $filename1 = time() . '.' . $image1->getClientOriginalExtension();
             $location1 = public_path('images1/' . $filename1);
-            Image::make($image1)->resize(800, 400)->save($location1);
+            Image::make($image1)->fit(52, 63)->save($location1);
             $oldfilename1 = $post->schedule_away_image;
             // update the data base
             $post->schedule_away_image = $filename1;

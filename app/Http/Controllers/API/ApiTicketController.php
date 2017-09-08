@@ -114,7 +114,7 @@ class ApiTicketController extends Controller
 	 **/
 	public function getSchedule()
 	{
-		$schedule = Schedule::where('schedule_date_match', '>=', date("Y-m-d"))->latest()->get();
+		$schedule = Schedule::where('schedule_date_match', '>=', date("Y-m-d"))->get();
 		return Response::json(['data'=> $schedule], 200);
 	}
 
@@ -185,15 +185,15 @@ class ApiTicketController extends Controller
         		if (!empty($request->get('image'))) {
         			\Log::info($request->all());
         			$baseImage = base64_decode($request->get('image'));
-        			$filename = date("Y-m-d") . ".jpg";
+        			$filename = date("Y-m-d H:i:s") . ".jpg";
                     $location = public_path('images/' . $filename);
                     \Image::make($baseImage)->save($location);
             	    $salesSave->transaction_proof_image = $filename;
         		}
                 $salesSave->save();
-                return Response::json(['data'=> "Sukses"], 200);
+                return Response::json(['data'=> "Bukti transaksi telah tersimpan"], 200);
             } else {
-                return Response::json(['data'=> "Gagal"], 400);
+                return Response::json(['data'=> "Gagal menyimpan bukti transaksi"], 400);
             }
             
         }
@@ -207,7 +207,7 @@ class ApiTicketController extends Controller
 	 **/
 	public function getTransaction(Request $request)
 	{
-		$transaction = Transaction::whereCustomerId($request->get('user_id'))->with('ticket')->latest()->get();
+		$transaction = Transaction::whereCustomerId($request->get('user_id'))->with('ticket')->with('schedule')->latest()->get();
 		return Response::json(['data'=> $transaction], 200);
 	}
 

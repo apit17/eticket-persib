@@ -11,6 +11,7 @@ use App\Models\SaleDetail;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\Customer;
+use App\Models\Ticket;
 use View;
 use PDF;
 use Sentry;
@@ -44,7 +45,7 @@ class SaleController extends Controller
     {
         return Datatables::of($this->transaction->all())
             ->editColumn('created_at', function ($results) {
-                return date('d M Y',strtotime($results->created_at));
+                return date('Y-m-d H:i:s',strtotime($results->created_at));
             })
             ->editColumn('customer_id', function ($results) {
                 return ucwords(strtolower($results->customer->customer_name));
@@ -179,6 +180,8 @@ class SaleController extends Controller
         $id = $request->get('id');
         // $data = $this->sale->getDataInvoice($id);
         $data = Transaction::find($id);
+        $data->transaction_resi_status = 3;
+        $data->save();
         $date = Kissproof::dateIndo($data->transaction_date);
         $pdf = PDF::loadView('backend.sale.print', array("data" => $data, "date" => $date))->setPaper('A4')->setOrientation('portrait');
 
@@ -209,11 +212,12 @@ class SaleController extends Controller
             $insert = array (
                 'email' => $customer->customer_email,
                 'name'  => $customer->customer_name,
-                'resi'  => strtoupper($sale->transaction_resi_number)
+                'resi'  => strtoupper($sale->transaction_resi_number),
+                'code'  => $sale->transaction_code
             );
             Mail::send('email.sendResiNumber', $insert, function ($message) use ($insert) {
-                $message->subject("E-Ticket Persib - Informasi Nomor Resi [Anda tidak perlu membalas email ini]");
-                $message->from('apitgilang1994@gmail.com', 'E-Ticket Persib');
+                $message->subject("E-Ticket Persib - Informasi Nomor Resi Dengan Kode #" . $insert['code'] . " [Anda tidak perlu membalas email ini]");
+                $message->from('eticket1933@gmail.com', 'E-Ticket Persib');
                 $message->to($insert['email']);
             });
         }

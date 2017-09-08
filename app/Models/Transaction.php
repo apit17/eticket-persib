@@ -15,4 +15,9 @@ class Transaction extends Model
     {
         return $this->belongsTo('\App\Models\Ticket');
     }
+
+    public function schedule()
+    {
+        return $this->belongsTo('\App\Models\Schedule');
+    }
 }

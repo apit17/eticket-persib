@@ -42,7 +42,7 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/create',['uses' => 'SaleController@create']);
             Route::post('/store',['uses' => 'SaleController@store']);
             Route::get('/detail',['uses' => 'SaleController@show']);
-            Route::get('/print',['uses' => 'SaleController@printInvoice']);
+            Route::get('/print',['uses' => 'SaleController@printInvoice', 'as' => 'print.ticket']);
             Route::post('/resi',['uses' => 'SaleController@addResiNumber']);
         });
 
